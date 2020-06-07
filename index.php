@@ -18,7 +18,7 @@ $OUTPUT->flashMessages();
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>HTML5 Pacman</title>
+    <title>JSMol Model Kit</title>
     
     <style type="text/css">
     </style>
