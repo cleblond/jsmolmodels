@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cartridge_basiclti_link xmlns="http://www.imsglobal.org/xsd/imslticc_v1p0" xmlns:blti="http://www.imsglobal.org/xsd/imsbasiclti_v1p0" xmlns:lticm="http://www.imsglobal.org/xsd/imslticm_v1p0" xmlns:lticp="http://www.imsglobal.org/xsd/imslticp_v1p0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/imslticc_v1p0 http://www.imsglobal.org/xsd/lti/ltiv1p0/imslticc_v1p0.xsd http://www.imsglobal.org/xsd/imsbasiclti_v1p0 http://www.imsglobal.org/xsd/lti/ltiv1p0/imsbasiclti_v1p0p1.xsd http://www.imsglobal.org/xsd/imslticm_v1p0 http://www.imsglobal.org/xsd/lti/ltiv1p0/imslticm_v1p0.xsd http://www.imsglobal.org/xsd/imslticp_v1p0 http://www.imsglobal.org/xsd/lti/ltiv1p0/imslticp_v1p0.xsd">
+  <blti:title>YouTube</blti:title>
+  <blti:description>This tool allows you to track as students access and watch a YouTube video.
+You can track both student launches and vierwing behavior within the video.
+You can assign grades to students for watching the video or based on how much of the video 
+they have watched.
+</blti:description>
+  <blti:launch_url>https://www.tsugicloud.org/mod/youtube/</blti:launch_url>
+  <blti:custom>
+    <lticm:property name="sub_canvas_account_id">$Canvas.account.id</lticm:property>
+    <lticm:property name="sub_canvas_account_name">$Canvas.account.name</lticm:property>
+    <lticm:property name="sub_canvas_account_sis_sourceId">$Canvas.account.sisSourceId</lticm:property>
+    <lticm:property name="sub_canvas_api_domain">$Canvas.api.domain</lticm:property>
+    <lticm:property name="sub_canvas_assignment_id">$Canvas.assignment.id</lticm:property>
+    <lticm:property name="sub_canvas_assignment_points_possible">$Canvas.assignment.pointsPossible</lticm:property>
+    <lticm:property name="sub_canvas_assignment_title">$Canvas.assignment.title</lticm:property>
+    <lticm:property name="sub_canvas_course_id">$Canvas.course.id</lticm:property>
+    <lticm:property name="sub_canvas_course_sis_source_id">$Canvas.course.sisSourceId</lticm:property>
+    <lticm:property name="sub_canvas_enrollment_enrollment_state">$Canvas.enrollment.enrollmentState</lticm:property>
+    <lticm:property name="sub_canvas_membership_concluded_roles">$Canvas.membership.concludedRoles</lticm:property>
+    <lticm:property name="sub_canvas_membership_roles">$Canvas.membership.roles</lticm:property>
+    <lticm:property name="sub_canvas_root_account.id">$Canvas.root_account.id</lticm:property>
+    <lticm:property name="sub_canvas_root_account_sis_source_id">$Canvas.root_account.sisSourceId</lticm:property>
+    <lticm:property name="sub_canvas_user_id">$Canvas.user.id</lticm:property>
+    <lticm:property name="sub_canvas_user_login_id">$Canvas.user.loginId</lticm:property>
+    <lticm:property name="sub_canvas_user_sis_source_id">$Canvas.user.sisSourceId</lticm:property>
+    <lticm:property name="sub_canvas_caliper_url">$Caliper.url</lticm:property>
+    <lticm:property name="person_address_timezone">$Person.address.timezone</lticm:property>
+    <lticm:property name="person_email_primary">$Person.email.primary</lticm:property>
+    <lticm:property name="person_name_family">$Person.name.family</lticm:property>
+    <lticm:property name="person_name_full">$Person.name.full</lticm:property>
+    <lticm:property name="person_name_given">$Person.name.given</lticm:property>
+    <lticm:property name="user_image">$User.image</lticm:property>
+  </blti:custom>
+  <blti:extensions platform="canvas.instructure.com">
+    <lticm:property name="privacy_level">anonymous</lticm:property>
+    <lticm:property name="domain">www.tsugicloud.org</lticm:property>
+    <lticm:property name="text">YouTube</lticm:property>
+  </blti:extensions>
+  <blti:extensions platform="tsugi.org">
+    <lticm:property name="OAuth.hmac-sha256">true</lticm:property>
+    <lticm:property name="OAuth.splitSecret">true</lticm:property>
+    <lticm:property name="simple_outcomes">true</lticm:property>
+    <lticm:property name="privacy_url">https://www.tsugicloud.org/about/policies/privacy</lticm:property>
+    <lticm:property name="sla_url">https://www.tsugicloud.org/about/policies/service-level-agreement</lticm:property>
+    <lticm:property name="key_url">https://www.tsugicloud.org/tsugi/settings</lticm:property>
+    <lticm:property name="app_store_url">https://www.tsugicloud.org/tsugi/lti/store</lticm:property>
+    <lticm:property name="lti_2_url">https://www.tsugicloud.org/tsugi/lti/register</lticm:property>
+    <lticm:property name="app_store_canvas_url">https://www.tsugicloud.org/tsugi/lti/store/canvas-config.xml</lticm:property>
+  </blti:extensions>
+</cartridge_basiclti_link>
