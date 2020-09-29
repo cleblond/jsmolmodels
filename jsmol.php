@@ -8,7 +8,13 @@
 <script type="text/javascript" src="/jmol/jsmol/JSmol.min.js"></script>
 <!-- <script type="text/javascript" src="/tsugi/mod/openochem/js/bootstrap.min.js"></script> -->
 
+<link href="/tsugi/mod/openochem/css/bootstrap.min.css" rel="stylesheet">
+<script src="/tsugi/mod/openochem/js/bootstrap.min.js"></script>
+
+
 <script type="text/javascript" src="/tsugi/mod/jsmolmodels/js/jsmol_editor.js"></script>
+<script type="text/javascript" src="/tsugi/mod/jsmolmodels/js/bootbox.min.js"></script>
+
 
 
 
@@ -41,9 +47,9 @@
             <button onclick='procBtn("zoomI")' title="Zoom In" data-widget="Kekule.Widget.RadioButton" class="GlyphButton K-Chem-ZoomIn" ></button>
             <button onclick='procBtn("zoomO")' title="Zoom Out" data-widget="Kekule.Widget.RadioButton" class="GlyphButton K-Chem-ZoomOut" ></button>
             <button onclick='procBtn("rotateB")' title="Rotate about bond/Set dihedral angle" data-widget="Kekule.Widget.RadioButton"  class="GlyphButton K-Chem-RotateLeft" ></button>
-            <button onclick='moveMol(1)' title="Move" data-widget="Kekule.Widget.RadioButton" class="Button" ><i class="fa fa-arrows-alt"></i></button>
+            <button onclick='moveMol(1)' title="Move" data-widget="Kekule.Widget.RadioButton" class="Button" ><i class="fa fa-2x fa-arrows-alt"></i></button>
             <button onclick='procBtn("correctH")' title="ADD Hydrogens" data-widget="Kekule.Widget.RadioButton" class="GlyphButton K-Chem-MolHideHydrogens"></button>
-            <button onclick='procBtn("optimizeM")' title="Optimize Structure" data-widget="Kekule.Widget.RadioButton" class="Button"><i class="fa fa-motorcycle"></i></button>
+            <button onclick='procBtn("optimizeM")' title="Optimize Structure" data-widget="Kekule.Widget.RadioButton" class="Button"><i class="fa fa-2x fa-motorcycle"></i></button>
           </div>
 
 
@@ -64,7 +70,7 @@
             <button onclick='procBtn("atomN")' title="Add N" data-widget="Kekule.Widget.RadioButton"  class="Button atombtn" >N</button>
 	    <button onclick='procBtn("atomO")' title="Add O" data-widget="Kekule.Widget.RadioButton"  class="Button atombtn" >O</button>
             <button onclick='procBtn("atomCl")' title="Add Cl" data-widget="Kekule.Widget.RadioButton"  class="Button atombtn" >Cl</button>
-            <button onclick='procBtn("atomX")' title="Add other atoms" data-widget="Kekule.Widget.RadioButton"  class="Button atombtn" >X</button>
+            <button onclick='osrP("atomX")' title="Add other atoms" data-widget="Kekule.Widget.RadioButton"  class="Button atombtn" >X</button>
             
             <button id="ringbtn" class="GlyphButton" title="Ring structures tool" data-widget="Kekule.Widget.CompactButtonSet" data-text="Button4" data-show-text="false" data-button-set="#radioButtonGroup2" class=" K-Widget K-Button K-NonSelectable K-No-Wrap K-Text-Hide K-Glyph-Show K-Layout-H K-Chem-MolRingIaController"></button>
             

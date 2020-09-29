@@ -81,10 +81,10 @@ function trim(str) {
 function jmscript(scpt) { Jmol.script(jmolApplet0, scpt); }
 
 function mkResetMin() {
-        /*
+        
 	jmscript('unbind; unbind _wheelZoom; unbind "DOUBLE"; set picking off; set picking on; set allowRotateSelected false;');
 	deleteModel = false; modelEdit = false; colorChange = false;
-        */
+        
 	//writeHL("off");
 }
 
@@ -209,7 +209,10 @@ function echo(msg, loc, delay, font, color) {
 		return false;
 	}
 
+
 	function promptAlt(t,v,c,d) {
+	
+	    //console.log(t,v,c,d);
 		d = (!d)?"":d;
 		keysOpen = true;
 		bootbox.prompt({
@@ -227,8 +230,47 @@ function echo(msg, loc, delay, font, color) {
 			}
 		});
 	}
-	function osrP(cmd) {
-		appendArg = "loadM";
+
+
+/*
+function promptAlt(t,v,c,d) {
+	console.log("Here");
+	d = (!d)?"":d;
+	bootbox.prompt({
+		title: t,
+		value: v,
+		callback: function(result) {
+			if (result === null) {
+				bootbox.hideAll();
+			} else {
+			
+			    	console.log("Here2");
+				result = trim(result);
+				if (c == "saveLS1") { bootbox.hideAll(); saveLS1(result); }
+				if (c == "saveLSjme1") { bootbox.hideAll(); saveLSjme1(result); }
+				if (c == "restoreLS1") { bootbox.hideAll(); restoreLS1(result); }
+				if (c == "restoreLSjme1") { bootbox.hideAll(); restoreLSjme1(result); } 
+				if (c == "setKitNum1") { bootbox.hideAll(); setKitNum1(result); }
+				if (c == "setEditAtom") { bootbox.hideAll(); setEditAtom(d,result); }
+				if (c == "doLoad") {
+					bootbox.hideAll();
+					if (appendArg == "appendM" && fileType != "mol") {
+						bootbox.alert("<div style='font-size:18px'><h4>CheMagic Model Kit: Append Model Notice</h4><p style='text-align:left'>Sorry, the Model Kit can only append new models to molfiles.</p></div>");
+					}
+					else {
+						localStorage.removeItem("chemagicTEMP");
+						doLoad(appendArg,result);
+					}
+				}
+			}
+		}
+	});
+}
+*/
+	
+	
+function osrP(cmd) {
+		//appendArg = "loadM";
 		var t = "";
 		var v = "I";
 		if (cmd == "atomX") {
@@ -243,9 +285,10 @@ function echo(msg, loc, delay, font, color) {
 
 
 function moveMol(num) {
-	if (!typeCheck("msp")) { return null; }
+	//if (!typeCheck("msp")) { return null; }
 	mkResetMin();
 	jmscript("set antialiasDisplay false");
+	console.log(num);
 	if (num == 1) {
 		echo("Dbl-click on screen cycles click-drag move mode: |Translate Model, Rotate Model, and Drag Atom |Active Mode: Click-Drag model to TRANSLATE model. |");
 		jmscript('set picking off; set picking ON; set atomPicking true; set allowRotateSelected TRUE; set picking dragmolecule;bind "double" "javascript moveMol(2)";');
@@ -459,12 +502,12 @@ function stashUndo(str) {
 
 
 function LoadStructCallback(a,b,c,d,e,f,g,h) {
-    console.log('LSCB');
+    //console.log('LSCB');
     
     
     jmscript('set modelKitMode true;');
-    console.log(modelEdit);
-    console.log(spart1);
+    //console.log(modelEdit);
+    //console.log(spart1);
     if (modelEdit) { return null; }
 
 /*
@@ -504,7 +547,7 @@ function LoadStructCallback(a,b,c,d,e,f,g,h) {
 
 
 function StructureModifiedCallback(x, y, z) {
-    console.log('SMCB');
+    //console.log('SMCB');
 
     if (y > 0) {
     	stashUndo();
@@ -631,7 +674,7 @@ function aClickActionB(num, result) {
 
 
 $( document ).ready(function() {
-    console.log( "ready!" );
+   //console.log( "ready!" );
 $( "#jmolApplet0_submit" ).after( '<button onclick="Jmol.loadFileFromDialog(jmolApplet0)">Load File</button>' );
 });
 
