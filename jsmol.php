@@ -28,18 +28,31 @@
   display:inline; /* needed for horiz. centering */
 }
 
+#radioButtonGroup0 a{
+
+padding: 5px;
+
+}
+
+#radioButtonGroup2 a{
+
+padding: 5px;
+
+}
+
+
 </style>
 
 
-  <div  style="margin: 0.5em; width: 100%; white-space: nowrap; display: inline-block;" role="toolbar" aria-label="...">
+  <div  style="margin-bottom: -1px; width: 100%; white-space: nowrap; display: inline-block; padding-left: 57px;" role="toolbar" aria-label="...">
 
 
           <div data-widget="Kekule.Widget.ButtonGroup">
-            <a onclick='resetJsmol();' title="Clear Structure" data-widget="Kekule.Widget.RadioButton" class="GlyphButton K-Chem-NewDoc" formnovalidate></a>
-            <a onclick='getUndo()' title="Undo" data-widget="Kekule.Widget.RadioButton" class="GlyphButton K-Chem-Undo" formnovalidate></a>
-            <a onclick='getRedo()' title="Redo" data-widget="Kekule.Widget.RadioButton" class="GlyphButton K-Chem-Redo" ></a>
-            <a onclick='procBtn("zoomI")' title="Zoom In" data-widget="Kekule.Widget.RadioButton" class="GlyphButton K-Chem-ZoomIn" ></a>
-            <a onclick='procBtn("zoomO")' title="Zoom Out" data-widget="Kekule.Widget.RadioButton" class="GlyphButton K-Chem-ZoomOut" ></a>
+            <a onclick='resetJsmol();' title="Clear Structure" data-widget="Kekule.Widget.Button" class="GlyphButton K-Chem-NewDoc" formnovalidate></a>
+            <a onclick='getUndo()' title="Undo" data-widget="Kekule.Widget.Button" class="GlyphButton K-Chem-Undo" formnovalidate></a>
+            <a onclick='getRedo()' title="Redo" data-widget="Kekule.Widget.Button" class="GlyphButton K-Chem-Redo" ></a>
+            <a onclick='procBtn("zoomI")' title="Zoom In" data-widget="Kekule.Widget.Button" class="GlyphButton K-Chem-ZoomIn" ></a>
+            <a onclick='procBtn("zoomO")' title="Zoom Out" data-widget="Kekule.Widget.Button" class="GlyphButton K-Chem-ZoomOut" ></a>
             
 
             
@@ -49,10 +62,10 @@
 
 
 
-    </div>
+  </div>
 
-    <div style="margin-right: 0.5em; margin-left: 0.5em; width: 100%; white-space: nowrap; display: inline-block;">
-
+  <div style="margin-right: 0.5em; margin-left: 0.5em; width: 100%; white-space: nowrap; display: inline-block;">
+      <div style="width: 50px; display: inline-block; float: left;" >
           <div data-widget="Kekule.Widget.ButtonGroup" data-layout="2" style="vertical-align: top">
             <a onclick='deleteAtomBond(1)' title="Delete Atom/Bond" data-widget="Kekule.Widget.RadioButton"  class="GlyphButton K-Chem-BasicMolEraserIaController" ></a>
 
@@ -63,17 +76,17 @@
             
             <a id="ringbtn" class="GlyphButton" title="Ring structures tool" data-widget="Kekule.Widget.CompactButtonSet" data-text="Button4" data-show-text="false" data-button-set="#radioButtonGroup2"></a>
             
-            <a onclick='procBtn("correctH")' title="ADD Hydrogens" data-widget="Kekule.Widget.RadioButton" class="GlyphButton K-Chem-MolHideHydrogens"></a>
+            <a onclick='procBtn("correctH")' title="Add Hydrogens" data-widget="Kekule.Widget.Button" class="GlyphButton K-Chem-MolHideHydrogens"></a>
             
-            <a onclick='moveMol(1)' title="Move atoms or structure" data-widget="Kekule.Widget.RadioButton" class="Button" ><i class="fa fa-2x fa-arrows-alt"></i></a>
+            <a onclick='moveMol(1)' title="Move atoms or structure" data-widget="Kekule.Widget.RadioButton" class="Button" ><i class="fa fa-3x fa-arrows-alt"></i></a>
 
             <a onclick='procBtn("rotateB")' title="Rotate about bond/Set dihedral angle" data-widget="Kekule.Widget.RadioButton"  class="GlyphButton K-Chem-RotateLeft" ></a>  
-            <a onclick='procBtn("optimizeM")' title="Optimize Structure" data-widget="Kekule.Widget.RadioButton" class="Button"><i class="fa fa-2x fa-motorcycle"></i></a>
+            <a onclick='procBtn("optimizeM")' title="Optimize Structure" data-widget="Kekule.Widget.Button" class="Button"><i class="fa fa-3x fa-motorcycle"></i></a>
             
           </div>
           
           
-          <div id="radioButtonGroup0" data-widget="Kekule.Widget.ButtonGroup" data-layout="1" style="horizontal-align: top">
+          <div id="radioButtonGroup0" data-widget="Kekule.Widget.ButtonGroup" data-layout="1" style="horizontal-align: top; margin-right: -10px">
           
             <a onclick='procBtn("atomH")' title="Add H" data-widget="Kekule.Widget.RadioButton"  class="Button atombtn" >H</a>
             <a onclick='procBtn("atomC")' title="Add C" data-widget="Kekule.Widget.RadioButton"  class="Button atombtn" data-checked="true">C</a>
@@ -104,9 +117,10 @@
             <a onclick='procBtn("ringar6")' data-widget="Kekule.Widget.RadioButton" class="GlyphButton K-Chem-MolRingIaController-Ar-6" data-checked="true"></a>                   
           </div>
 
+      </div><!-- button wrapper-->
+      
+      <div id="jsmoldiv" style="display: inline-block; z-index: 400;"></div>
 
-
-        <div id="jsmoldiv" style="display: inline-block; z-index: 400;"></div>
 
     </div>
       <!-- <div class="col-xs-11"> -->
