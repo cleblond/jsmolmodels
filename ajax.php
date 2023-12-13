@@ -11,6 +11,10 @@ $p = $CFG->dbprefix;
 echo"<pre>";
 var_dump($_POST);
 echo"</pre>";
+
+
+if ($USER->instructor) {
+
      if ( isset($_POST)) {
            //if ($_POST['action'] == "save") {
                  if ($_POST['initial']) {
@@ -46,3 +50,4 @@ echo"</pre>";
                  }
           
      }
+}
