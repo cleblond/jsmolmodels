@@ -30,6 +30,9 @@ if ($USER->instructor) {
                 $initial = '';
             
             }
+            
+            $inst = '';
+            
 
 
 } else {
@@ -50,6 +53,10 @@ if ($USER->instructor) {
             } else {
                     $initial = false;
             }
+            
+            
+            $inst = "style='display: none;'";
+            
 }
 
 
@@ -83,6 +90,8 @@ $OUTPUT->flashMessages();
 //$initial = '';
 ?>
    <input type="hidden" id="ajax" name="ajax" value="<?php echo(addSession('ajax.php'))?>">
+   
+   <div <?=$inst?> >
    <form id="setupform" action="index.php" method="post">   
             
 
@@ -114,6 +123,7 @@ $OUTPUT->flashMessages();
                
             </div>  
     </form>
+    </div>
 
 
 </body>
