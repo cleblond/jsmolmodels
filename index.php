@@ -9,6 +9,56 @@ $LAUNCH = LTIX::requireData();
 // Model
 $p = $CFG->dbprefix;
 // View
+
+if ($USER->instructor) {
+
+        //select the initial and answer  
+     
+            $row = $PDOX->rowDie("SELECT * FROM {$p}jsmolmodels WHERE user_id = :UI and link_id = :LI",
+                array(
+                    ':LI' => $LINK->id,
+                    ':UI' => $USER->id
+                )
+            );
+            
+            if ($row) {
+
+                $initial = $row['initial'];
+            
+            } else {
+
+                $initial = '';
+            
+            }
+
+
+} else {
+
+            
+            $row = $PDOX->rowDie("SELECT initial FROM {$p}jsmolmodels WHERE link_id = :LI",
+                array(
+                    ':LI' => $LINK->id
+                )
+            );
+            
+
+            if ($row) {
+                    $initial = $row['initial'];
+                    
+                    
+                    //var_dump($answer);
+            } else {
+                    $initial = false;
+            }
+}
+
+
+
+
+
+
+
+
 $OUTPUT->header();
 $OUTPUT->bodyStart();
 $OUTPUT->flashMessages();
@@ -28,8 +78,42 @@ $OUTPUT->flashMessages();
 <body>
 
 
-<?php include("jsmol.php"); ?>
+<?php include("jsmol.php"); 
 
+//$initial = '';
+?>
+   <input type="hidden" id="ajax" name="ajax" value="<?php echo(addSession('ajax.php'))?>">
+   <form id="setupform" action="index.php" method="post">   
+            
+
+                    
+            <input class="btn btn-xs btn-primary" type="submit" name="save" value="Save">
+        
+            <div id="instr_cntrls" class="form-group" >
+            
+                    <div class="row">
+
+
+
+                      <div class="col-xs-6">
+
+
+                        <button class="btn btn-xs btn-primary" id="initialbtn">Set Initial</button>
+                        <button class="btn btn-xs btn-primary" id="viewinitialbtn">View Initial</button>
+                        <textarea class="form-control" name="initial" id="initial"><?=$initial?></textarea>
+                        
+
+                        
+
+                      </div> 
+                        
+                    </div>
+                    
+                    
+
+               
+            </div>  
+    </form>
 
 
 </body>

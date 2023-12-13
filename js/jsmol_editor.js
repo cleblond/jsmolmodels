@@ -95,46 +95,14 @@ function hasCharge() {
 		return true;
 	}
 	return false;
-}
+}  
 
-
-/*
-function writeHL(val) {
-	if (val == "off") { val = ""; }
-	else { val = "<a href=\"" + val + "\" target=\"_blank\"><span style=\"color:yellow\" onclick=\"writeHL('off')\">Click to Open Data</span></a>";}
-	$("#hiddenLink").html(val);
-}
-*/    
 
 
 
 
 function resetJsmol(){
-        //jmscript('zap;');
-/*
-        console.log('HERE');
-        var initmolfile = "string\\n\
-        __Jmol-14_08271808363D 1   1.00000     0.00000     0\n\
-        Jmol version 14.7.5_2016.12.02  2016-12-02 07:03 EXTRACT: ({0:4})\n\
-        5  4  0  0  0  0              1 V2000\n\
-        0.00000   0.00000   0.00000 C   0  0  0  0  0  0\n\
-        0.63000   0.63000   0.63000 H   0  0  0  0  0  0\n\
-        -0.63000  -0.63000   0.63000 H   0  0  0  0  0  0\n\
-        -0.63000   0.63000  -0.63000 H   0  0  0  0  0  0\n\
-        0.63000  -0.63000  -0.63000 H   0  0  0  0  0  0\n\
-        1  5  1  0  0  0\n\
-        1  2  1  0  0  0\n\
-        3  1  1  0  0  0\n\
-        4  1  1  0  0  0\n\
-        M  END\n\
-        ";
-        
-        
-        
-        molfile = '"model example" '+initmolfile+' end "model example"';
-        */
-        //console.log(molfile);
-        //Jmol.script(jmolApplet0,' data '+molfile+'; show data;' );
+
 
         Jmol.script(jmolApplet0,'set modelKitMode true; zap;' );
 
@@ -231,42 +199,6 @@ function echo(msg, loc, delay, font, color) {
 		});
 	}
 
-
-/*
-function promptAlt(t,v,c,d) {
-	console.log("Here");
-	d = (!d)?"":d;
-	bootbox.prompt({
-		title: t,
-		value: v,
-		callback: function(result) {
-			if (result === null) {
-				bootbox.hideAll();
-			} else {
-			
-			    	console.log("Here2");
-				result = trim(result);
-				if (c == "saveLS1") { bootbox.hideAll(); saveLS1(result); }
-				if (c == "saveLSjme1") { bootbox.hideAll(); saveLSjme1(result); }
-				if (c == "restoreLS1") { bootbox.hideAll(); restoreLS1(result); }
-				if (c == "restoreLSjme1") { bootbox.hideAll(); restoreLSjme1(result); } 
-				if (c == "setKitNum1") { bootbox.hideAll(); setKitNum1(result); }
-				if (c == "setEditAtom") { bootbox.hideAll(); setEditAtom(d,result); }
-				if (c == "doLoad") {
-					bootbox.hideAll();
-					if (appendArg == "appendM" && fileType != "mol") {
-						bootbox.alert("<div style='font-size:18px'><h4>CheMagic Model Kit: Append Model Notice</h4><p style='text-align:left'>Sorry, the Model Kit can only append new models to molfiles.</p></div>");
-					}
-					else {
-						localStorage.removeItem("chemagicTEMP");
-						doLoad(appendArg,result);
-					}
-				}
-			}
-		}
-	});
-}
-*/
 	
 	
 function osrP(cmd) {
@@ -510,38 +442,7 @@ function LoadStructCallback(a,b,c,d,e,f,g,h) {
     //console.log(spart1);
     if (modelEdit) { return null; }
 
-/*
-    if (spart1 == "OK" && spart2 == "OK") { fileType = "spartan"; spart1 = ""; spart2 = ""; jmscript("taVar1='';taVar2='';"); echo("Click GET Model File button to get |a loadable text file with MO and Charges."); return null;}
-    if (spart1 == "1") { spart1 = "OK";jmscript("taVar1 = show('file');zap;load '@taVar1'"); }
-    if (spart2 == "2") { spart2 = "OK";jmscript('taVar2 = show("file"); zap;var x = taVar1 + taVar2; load "@x"'); return null; }
-    jmolApplet0._infoHeader = "&nbsp;Model Kit Mini Menu";
-    fileType = jmv("_fileType").toLowerCase();
-	console.log(fileType);
-	var bkgClr = getEchoColor(modelBkg1);
-	if (fileType.indexOf("spartan") > -1) { fileType = "spartan"; }
-	else if (fileType.indexOf("mol") > -1 ) { fileType = "mol"; }
-	else if (fileType.indexOf("cif") > -1 ) { fileType = "cif"; }
-	else if (fileType.indexOf("pdb") > -1 ) { fileType = "pdb"; }
-	else { fileType = "mol";  }
-	if (fileType == "pdb") { jmscript('set preserveState FALSE; set platformSpeed 8; hover off; frank OFF; unbind _wheelZoom; unbind "DOUBLE"; centerat boundbox; zoom 100;select *;restrict bonds not selected;select not selected;cartoons on;color structure;javascript stashMol();'); }
-	if (fileType == "mol") {jmscript('set preserveState FALSE; set platformSpeed 8; hover off; frank OFF; unbind _wheelZoom; unbind "DOUBLE"; select *; wireframe 0.15; spacefill 23%;boundbox {*}; color label pink; select formalCharge <> 0;label %C; centerat boundbox; zoom 100; display *;javascript stashMol();'); }
-	if (fileType == "spartan") {
-		var msg = "Charge & MO data. |Click MO & Charge buttons for additional instructions. |";
-		if (jmstr("fileName").indexOf("__") > -1) { msg = "Charge data ONLY. |Click Charge button to rotate charge types. |"; }
-		jmscript('set preserveState FALSE; set platformSpeed 8; hover off; frank OFF; unbind _wheelZoom; unbind "DOUBLE"; select *; wireframe 0.15; spacefill 23%;boundbox {*}; centerat boundbox; zoom 100; set echo bottom left;font echo 18 serif;color echo ' + bkgClr + '; echo This is a SPARTAN file with ' + msg + ';refresh;delay 0.1;javascript stashMol();');
-		var add1;
-		if (jmstr("fileContents").indexOf("HOMO_N =") > -1) {
-			add1 = homoInts.push(parseInt(jmstr("fileContents").split("HOMO_N =")[1].split(".")[0].trim())); 
-			var sub1 = homoInts.shift();
-		}
-		else {
-			add1 = homoInts.push("homo");
-			homoInts.shift();
-		}
-	}
-	if (fileType == "cif") { jmscript('set preserveState FALSE; set platformSpeed 8; hover off; frank OFF; unbind _wheelZoom; unbind "DOUBLE"; select *; wireframe 0.15; spacefill 23%;boundbox {*};center; zoom 100; frame *; display *; set displayCellParameters true; set echo top right;font echo 18 serif;color echo ' + bkgClr + '; echo Use CIF Symop button to rotate |through symop views.  |;refresh;delay 0.1;javascript stashMol();'); }
-	//mkResetMin();
-*/
+
 	return null;
 }
 
@@ -675,7 +576,92 @@ function aClickActionB(num, result) {
 
 $( document ).ready(function() {
    //console.log( "ready!" );
-$( "#jmolApplet0_submit" ).after( '<button onclick="Jmol.loadFileFromDialog(jmolApplet0)">Load File</button>' );
+    $( "#jmolApplet0_submit" ).after( '<button onclick="Jmol.loadFileFromDialog(jmolApplet0)">Load File</button>' );
+
+
+function getFormData($form){
+    var unindexed_array = $form.serializeArray();
+    var indexed_array = {};
+
+    $.map(unindexed_array, function(n, i){
+        indexed_array[n['name']] = n['value'];
+    });
+
+    return indexed_array;
+               
+}
+
+
+
+
+
+    $("form").submit(function (event) {
+        
+        //formData.question_text = tinymce.activeEditor.getContent();
+        //formData.action = "save";
+        //var myContent = tinymce.activeEditor.getContent();
+        
+        //function exportMolFile() {
+
+
+
+        var formData = getFormData($('form'));       
+
+        //console.log(formData);
+
+        $.ajax({
+          type: "POST",
+          url: $('#ajax').val(),
+          data: formData,
+          dataType: "json",
+          encode: true,
+        }).done(function (data) {
+          //console.log(data);
+        });
+
+        event.preventDefault();
+    });
+
+
+
+
+
+    $( "#initialbtn" ).click(function(e) {
+        e.preventDefault();
+       //$('#initial').text(JSON.stringify({"links": links, "nodes": nodes}));
+      
+       var molfile = Jmol.getPropertyAsString(jmolApplet0, "extractModel");
+
+        //console.log(molfile);
+
+ 
+        $("#initial").val(molfile);
+      
+      
+      
+    });
+    
+    $( "#viewinitialbtn" ).click(function(e) {
+        e.preventDefault();
+
+         var initial = '"model example"'+$("#initial").val() +' end "model example"';
+         
+         Jmol.script(jmolApplet0,'data '+initial+'; show data;' );
+         //console.log(initial);
+
+
+    });
+    
+    
+    
+         var initial = '"model example"'+$("#initial").val() +' end "model example"';
+         
+         Jmol.script(jmolApplet0,'data '+initial+'; show data;' );
+    
+    
+    
+
+
 });
 
 
