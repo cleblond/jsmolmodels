@@ -89,6 +89,8 @@ $OUTPUT->flashMessages();
 
 //$initial = '';
 ?>
+
+
    <input type="hidden" id="ajax" name="ajax" value="<?php echo(addSession('ajax.php'))?>">
    
    <div <?=$inst?> >

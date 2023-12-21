@@ -1,11 +1,15 @@
 
 <script src="/tsugi/mod/openochem/js/jquery-1.11.1.min.js"></script>
 <script src="/tsugi/mod/openochem/js/jquery-ui.min.js"></script>
-<script src="/tsugi/mod/openochem/js/kekule_libs/dist/kekule.js?modules=widget&min=true"></script>
+<script src="/tsugi/mod/openochem/js/kekule_libs/dist/kekule.js?modules=widget,chemWidget&min=true"></script>
 
 <link rel="stylesheet" type="text/css" href="/tsugi/mod/openochem/js/kekule_libs/dist/themes/default/kekule.css" />
 <link rel="stylesheet" type="text/css" href="/tsugi/mod/openochem/css/eocustom.css" />
 <script type="text/javascript" src="/jmol/jsmol/JSmol.min.js"></script>
+
+<!-- <script type="text/javascript" src="/jmol-16.1.47/jsmol/jsmol/JSmol.min.js"></script> -->
+
+
 <!-- <script type="text/javascript" src="/tsugi/mod/openochem/js/bootstrap.min.js"></script> -->
 
 <link href="/tsugi/mod/openochem/css/bootstrap.min.css" rel="stylesheet">
@@ -13,8 +17,9 @@
 
 
 <script type="text/javascript" src="/tsugi/mod/jsmolmodels/js/jsmol_editor.js"></script>
+<!--
 <script type="text/javascript" src="/tsugi/mod/jsmolmodels/js/bootbox.min.js"></script>
-
+-->
 
 
 
@@ -74,11 +79,11 @@ padding: 5px;
             
             <a id="bondbtn" class="GlyphButton" title="Bond tool" data-widget="Kekule.Widget.CompactButtonSet"  data-button-set="#radioButtonGroup1"></a>
             
-            <a id="ringbtn" class="GlyphButton" title="Ring structures tool" data-widget="Kekule.Widget.CompactButtonSet" data-text="Button4" data-show-text="false" data-button-set="#radioButtonGroup2"></a>
+            <a id="ringbtn" class="GlyphButton" title="Ring structures tool" data-widget="Kekule.Widget.CompactButtonSet" data-text="" data-show-text="false" data-button-set="#radioButtonGroup2"></a>
             
-            <a onclick='procBtn("correctH")' title="Add Hydrogens" data-widget="Kekule.Widget.Button" class="GlyphButton K-Chem-MolHideHydrogens"></a>
+            <a onclick='procBtn("correctH")' style="font-size:15px;" title="Add Hydrogens" data-text="<b>H</b>" data-widget="Kekule.Widget.Button" class="Button"></a>
             
-            <a onclick='moveMol(1)' title="Move atoms or structure" data-widget="Kekule.Widget.RadioButton" class="Button" ><i class="fa fa-3x fa-arrows-alt"></i></a>
+            <a onclick='moveMol(1)' title="Move atoms or structure" data-widget="Kekule.Widget.RadioButton" class="Button" ><i class="fa fa-2x fa-arrows-alt"></i></a>
 
             <a onclick='procBtn("rotateB")' title="Rotate about bond/Set dihedral angle" data-widget="Kekule.Widget.RadioButton"  class="GlyphButton K-Chem-RotateLeft" ></a>  
             <a onclick='procBtn("optimizeM")' title="Optimize Structure" data-widget="Kekule.Widget.Button" class="Button"><i class="fa fa-3x fa-motorcycle"></i></a>
@@ -93,7 +98,7 @@ padding: 5px;
             <a onclick='procBtn("atomN")' title="Add N" data-widget="Kekule.Widget.RadioButton"  class="Button atombtn" >N</a>
 	        <a onclick='procBtn("atomO")' title="Add O" data-widget="Kekule.Widget.RadioButton"  class="Button atombtn" >O</a>
             <a onclick='procBtn("atomCl")' title="Add Cl" data-widget="Kekule.Widget.RadioButton"  class="Button atombtn" >Cl</a>
-            <a onclick='osrP("atomX")' title="Add other atoms" data-widget="Kekule.Widget.RadioButton"  class="Button atombtn" >X</a>
+            <a onclick='showPT()' title="Add other atoms" data-widget="Kekule.Widget.RadioButton"  class="Button atombtn" >X</a>
           
           </div> 
           
@@ -125,4 +130,26 @@ padding: 5px;
     </div>
       <!-- <div class="col-xs-11"> -->
 
+
+
+
+<div id="ptModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Double-click an atom!</h4>
+      </div>
+      <div class="modal-body">
+        <div style="font-size: 12px;" id="peridicTable" data-widget="Kekule.ChemWidget.PeriodicTable"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
       

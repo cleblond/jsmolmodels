@@ -173,11 +173,11 @@ function echo(msg, loc, delay, font, color) {
 		if (typ == "s")  { typAppend = "Spartan files."; }
 		if (typ == "c")  { typAppend = "cif files."; }
 		if (typ == "p")  { typAppend = "pdb files."; }
-		bootbox.alert("<div style='font-size:18px'><h4>CheMagic Model Kit: Feature Not Available</h4><p style='text-align:left'>Sorry, this feature is only available for " + typAppend + "</p></div>");
+
 		return false;
 	}
 
-
+/*
 	function promptAlt(t,v,c,d) {
 	
 	    //console.log(t,v,c,d);
@@ -198,22 +198,15 @@ function echo(msg, loc, delay, font, color) {
 			}
 		});
 	}
+*/
+	
 
-	
-	
-function osrP(cmd) {
-		//appendArg = "loadM";
-		var t = "";
-		var v = "I";
-		if (cmd == "atomX") {
-			t = "<div style='font-size:18px'><p style='text-align:left'>Enter the symbol for the atom that you would like to use as the click/replace atom:</p></div>";
-			appendArg = "atomX";
-		}
-		var c = "osrB";
-	//if (cmd == "loadM") { c = "osrL"; }
-	promptAlt(t,v,c,appendArg);
+
+function showPT() {
+
+			$('#ptModal').modal('show');
+
 }
-
 
 
 function moveMol(num) {
@@ -236,7 +229,6 @@ function moveMol(num) {
 	if (num == 4) {
 		var ecStr = "Click a bond to select bond. Click-Drag in a vertical |direction on the left or right of the screen to rotate. |";
 		echo(ecStr);
-		// Color cpk is a kludge to fix problem associated with wheel zoom being off.
 		var scpt = 'set Picking OFF;set Picking ON;set Picking ROTATEBOND;unbind "LEFT-DRAG";bind "LEFT-DRAG" "_rotateBranch";hover off;unbind "WHEEL";bind "WHEEL" "select *;color cpk"';
 		jmscript(scpt);
 	}
@@ -244,22 +236,18 @@ function moveMol(num) {
 
 
 function deleteAtomBond(num) {
-	//if (!typeCheck("msp")) { return null; }
 	modelEdit = true;
 	mkResetMin();
-	//jmscript("set antialiasDisplay false");
 	if (num == 1) {
 		    echo("Dbl-click on screen cycles delete mode: |Delete Atom, Delete Bond |Active Mode: Click an atom to delete the atom.");
 			jmscript('set picking off; set picking on; set atomPicking true;set picking DELETEATOM; bind "double" "javascript deleteAtomBond(2)";');
 			console.log('herea');
 	}
 	if (num == 2) {
-            //jmscript("hover off");
 		    echo("Dbl-click on screen cycles delete mode: |Delete Atom, Delete Bond |Active Mode: Click a bond to delete the bond.");
 			scpt = 'set picking assignBond_0; bind "double" "javascript deleteAtomBond(1)";';
 			jmscript(scpt);
 			jmscript('hover off;');
-            //console.log('hereb');
 	}
 }
 
@@ -401,15 +389,6 @@ function procBtn(scpt,d) {
 		return null;
 	}
 	
-/*
-	if (scpt == "correctH") {
-		mkResetMin();
-		if (!typeCheck("m")) { return null; }
-		jmscript('delete hydrogen;calculate hydrogens');
-		echo("All H atoms have been deleted and recalculated. |Some H atoms may have to be added manually.");
-		return null;
-	}
-*/	
 	return null;
 	
 	
@@ -537,9 +516,9 @@ function echo(msg, loc, delay, font, color) {
 	function aClickActionP(num) {
 		if (!typeCheck("ms") && num == 1) { return null; }
 		if (fileType != "mol" && fileType != "spartan" && fileType != "cif") {
-			var t = "<div style='font-size:18px'><h4>CheMagic Model Kit: Confirm</h4><p style='text-align:left'>A loaded PDB file will be lost with this action. SPARTAN and CIF files will be retained, but they will be converted to molfiles. Your currently loaded model is a " + fileType.toUpperCase() + " file.</p></div>";
+			//var t = "<div style='font-size:18px'><h4>CheMagic Model Kit: Confirm</h4><p style='text-align:left'>A loaded PDB file will be lost with this action. SPARTAN and CIF files will be retained, but they will be converted to molfiles. Your currently loaded model is a " + fileType.toUpperCase() + " file.</p></div>";
 			var c = "aClickActionB";
-		confirmAlt(t,c,num); //Bootbox Confirm for non-molfile before aClickActionB
+		//confirmAlt(t,c,num); //Bootbox Confirm for non-molfile before aClickActionB
 	} else { aClickActionB(num, true); } // Molfile to aClickActionB
 	return null;
 }
@@ -575,39 +554,37 @@ function aClickActionB(num, result) {
 
 
 $( document ).ready(function() {
-   //console.log( "ready!" );
     $( "#jmolApplet0_submit" ).after( '<button onclick="Jmol.loadFileFromDialog(jmolApplet0)">Load File</button>' );
 
 
-function getFormData($form){
-    var unindexed_array = $form.serializeArray();
-    var indexed_array = {};
+    function getFormData($form){
+        var unindexed_array = $form.serializeArray();
+        var indexed_array = {};
 
-    $.map(unindexed_array, function(n, i){
-        indexed_array[n['name']] = n['value'];
-    });
+        $.map(unindexed_array, function(n, i){
+            indexed_array[n['name']] = n['value'];
+        });
 
-    return indexed_array;
-               
-}
-
-
+        return indexed_array;
+                   
+    }
 
 
+			var table = Kekule.Widget.getWidgetById('peridicTable');
+			table.useMiniMode= true;
+			table.enableMultiSelect = false;
+			
+			
+            $( "td" ).on( "dblclick", function() {
+                procBtn("atom"+table.selected.symbol)
+                $('#ptModal').modal('hide');
 
+            } );
+			
     $("form").submit(function (event) {
         
-        //formData.question_text = tinymce.activeEditor.getContent();
-        //formData.action = "save";
-        //var myContent = tinymce.activeEditor.getContent();
-        
-        //function exportMolFile() {
-
-
-
         var formData = getFormData($('form'));       
 
-        //console.log(formData);
 
         $.ajax({
           type: "POST",
@@ -616,7 +593,6 @@ function getFormData($form){
           dataType: "json",
           encode: true,
         }).done(function (data) {
-          //console.log(data);
         });
 
         event.preventDefault();
@@ -628,12 +604,8 @@ function getFormData($form){
 
     $( "#initialbtn" ).click(function(e) {
         e.preventDefault();
-       //$('#initial').text(JSON.stringify({"links": links, "nodes": nodes}));
       
        var molfile = Jmol.getPropertyAsString(jmolApplet0, "extractModel");
-
-        //console.log(molfile);
-
  
         $("#initial").val(molfile);
       
@@ -647,8 +619,6 @@ function getFormData($form){
          var initial = '"model example"'+$("#initial").val() +' end "model example"';
          
          Jmol.script(jmolApplet0,'data '+initial+'; show data;' );
-         //console.log(initial);
-
 
     });
     
