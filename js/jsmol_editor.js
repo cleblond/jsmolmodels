@@ -120,6 +120,8 @@ function getEchoColor(hexcolor){
 	return 'blue';
 }      
 
+
+
 function echo(msg, loc, delay, font, color) {
 	msg = (!msg) ? "" : msg;
 	font = (!font) ? "18" : font;
@@ -127,15 +129,15 @@ function echo(msg, loc, delay, font, color) {
 	delay = (!delay) ? "" : delay;
 	loc = (!loc) ? "top left" : loc;
 	menuItem = 0; globalVar = "";
-	if (msg == 1) { msg = "Dbl-Click window to toggle p orbitals off/on... |" }
-		if (msg == 2) { msg = "Dbl-Click window to toggle p orbitals off/on... |All orbitals for this model are loaded automatically |" }
-			if (msg == "") { jmscript("set echo bottom left;echo ;set echo top left;echo ;"); return null;  }
+	//if (msg == 1) { msg = "Dbl-Click window to toggle p orbitals off/on... |" }
+		//if (msg == 2) { msg = "Dbl-Click window to toggle p orbitals off/on... |All orbitals for this model are loaded automatically |" }
+		//if (msg == "") { jmscript("set echo bottom left;echo ;set echo top left;echo ;"); return null;  }
 		if (delay == "") {
 			jmscript("mo off;set echo " + loc + ";font echo " + font + " serif;color echo  " + color + ";echo " + msg + " |;refresh;delay 0.1");
 		}
-		else {
-			jmscript("mo off;set echo " + loc + ";font echo " + font + " serif;color echo  " + color + ";echo " + msg + " |;refresh;delay " + delay + ";echo ");
-		}
+		//else {
+		//	jmscript("mo off;set echo " + loc + ";font echo " + font + " serif;color echo  " + color + ";echo " + msg + " |;refresh;delay " + delay + ";echo ");
+		//}
 		return null;
 	}
 
@@ -213,17 +215,17 @@ function moveMol(num) {
 	//if (!typeCheck("msp")) { return null; }
 	mkResetMin();
 	jmscript("set antialiasDisplay false");
-	console.log(num);
+	//console.log(num);
 	if (num == 1) {
-		echo("Dbl-click on screen cycles click-drag move mode: |Translate Model, Rotate Model, and Drag Atom |Active Mode: Click-Drag model to TRANSLATE model. |");
+		echo("Click-Drag model to TRANSLATE model. |");
 		jmscript('set picking off; set picking ON; set atomPicking true; set allowRotateSelected TRUE; set picking dragmolecule;bind "double" "javascript moveMol(2)";');
 	}
 	if (num == 2) {
-		echo("Dbl-click on screen cycles click-drag move mode: |Translate Model, Rotate Model, and Drag Atom |Active Mode: Click-Drag model to ROTATE model. |");
+		echo("Click-Drag model to ROTATE model. |");
 		jmscript('set picking off; set picking ON;set atomPicking true;set picking dragmolecule;set allowRotateSelected TRUE;bind "drag" "_rotateselected";bind "double" "javascript moveMol(3)";');
 	}
 	if (num == 3) {
-		echo("Dbl-click on screen cycles click-drag move mode: |Translate Model, Rotate Model, and Drag Atom |Active Mode: Click-Drag atom to DRAG atom. |");
+		echo("Click-Drag atom to DRAG atom. |");
 		jmscript('set picking off; set picking ON; set picking DRAGATOM; bind "double" "javascript moveMol(1)";');
 	}
 	if (num == 4) {
@@ -238,17 +240,24 @@ function moveMol(num) {
 function deleteAtomBond(num) {
 	modelEdit = true;
 	mkResetMin();
+	
+	//jmscript('set picking off; set picking on; set atomPicking true;set picking DELETEATOM; bind "double" "javascript deleteAtomBond(2)";');
+	
+	
 	if (num == 1) {
-		    echo("Dbl-click on screen cycles delete mode: |Delete Atom, Delete Bond |Active Mode: Click an atom to delete the atom.");
+		    echo("Click an atom to delete the atom.");
 			jmscript('set picking off; set picking on; set atomPicking true;set picking DELETEATOM; bind "double" "javascript deleteAtomBond(2)";');
-			console.log('herea');
 	}
 	if (num == 2) {
-		    echo("Dbl-click on screen cycles delete mode: |Delete Atom, Delete Bond |Active Mode: Click a bond to delete the bond.");
+		    echo("Click a bond to delete the bond.");
 			scpt = 'set picking assignBond_0; bind "double" "javascript deleteAtomBond(1)";';
 			jmscript(scpt);
 			jmscript('hover off;');
 	}
+	
+	
+	
+	
 }
 
 
@@ -454,6 +463,7 @@ function PickCallback(x, y, z) {
 	}
 }
 
+/*
 function stashMol() { // Set chemagicTEMP for model transfer data
 	if (stereoToggle == 2 ) { jmscript("stereo " + modelstereo + ";background " + stereoBkg + ";select hydrogen or carbon; select not selected;color label white;label %e; select formalCharge <> 0; label %C");  if (fileType == "cif" || fileType == "pdb") { jmscript('select *;label ""'); } }
 	if (fileType == "spartan" || fileType == "cif" || fileType == "pdb") { return null; }
@@ -463,26 +473,7 @@ function stashMol() { // Set chemagicTEMP for model transfer data
 	}
 	return null;
 }
-
-
-function echo(msg, loc, delay, font, color) {
-	msg = (!msg) ? "" : msg;
-	font = (!font) ? "18" : font;
-	color = (!color) ? getEchoColor(modelBkg1) : color;
-	delay = (!delay) ? "" : delay;
-	loc = (!loc) ? "top left" : loc;
-	menuItem = 0; globalVar = "";
-	if (msg == 1) { msg = "Dbl-Click window to toggle p orbitals off/on... |" }
-		if (msg == 2) { msg = "Dbl-Click window to toggle p orbitals off/on... |All orbitals for this model are loaded automatically |" }
-			if (msg == "") { jmscript("set echo bottom left;echo ;set echo top left;echo ;"); return null;  }
-		if (delay == "") {
-			jmscript("mo off;set echo " + loc + ";font echo " + font + " serif;color echo  " + color + ";echo " + msg + " |;refresh;delay 0.1");
-		}
-		else {
-			jmscript("mo off;set echo " + loc + ";font echo " + font + " serif;color echo  " + color + ";echo " + msg + " |;refresh;delay " + delay + ";echo ");
-		}
-		return null;
-	}
+*/
 
 	function getUndo() {
 		if (fileType != "mol") { return null; }
@@ -512,7 +503,7 @@ function echo(msg, loc, delay, font, color) {
 		return true;
 	}    
 
-
+/*
 	function aClickActionP(num) {
 		if (!typeCheck("ms") && num == 1) { return null; }
 		if (fileType != "mol" && fileType != "spartan" && fileType != "cif") {
@@ -522,6 +513,8 @@ function echo(msg, loc, delay, font, color) {
 	} else { aClickActionB(num, true); } // Molfile to aClickActionB
 	return null;
 }
+
+
 function aClickActionB(num, result) {
 	num = parseInt(num);
 	if (!result) { return null; }
@@ -552,7 +545,7 @@ function aClickActionB(num, result) {
 	return null;
 }          
 
-
+*/
 $( document ).ready(function() {
     $( "#jmolApplet0_submit" ).after( '<button onclick="Jmol.loadFileFromDialog(jmolApplet0)">Load File</button>' );
 
@@ -570,17 +563,19 @@ $( document ).ready(function() {
     }
 
 
-			var table = Kekule.Widget.getWidgetById('peridicTable');
-			table.useMiniMode= true;
-			table.enableMultiSelect = false;
-			
-			
-            $( "td" ).on( "dblclick", function() {
-                procBtn("atom"+table.selected.symbol)
-                $('#ptModal').modal('hide');
+	var table = Kekule.Widget.getWidgetById('peridicTable');
+	table.useMiniMode= true;
+	table.enableMultiSelect = false;
+	
+	
+    $( "td" ).on( "dblclick", function() {
+        procBtn("atom"+table.selected.symbol)
+        $('#ptModal').modal('hide');
+        $('#atombtn span.K-Text-Content').html(table.selected.symbol);
 
-            } );
+    } );
 			
+
     $("form").submit(function (event) {
         
         var formData = getFormData($('form'));       
@@ -598,17 +593,15 @@ $( document ).ready(function() {
         event.preventDefault();
     });
 
-
-
-
-
     $( "#initialbtn" ).click(function(e) {
         e.preventDefault();
       
-       var molfile = Jmol.getPropertyAsString(jmolApplet0, "extractModel");
+       //var molfile = Jmol.getPropertyAsString(jmolApplet0, "extractModel");
+       
+       var stateinfo = Jmol.getPropertyAsString(jmolApplet0, "stateInfo");
+       //console.log(stateinfo);
  
-        $("#initial").val(molfile);
-      
+       $("#initial").val(stateinfo);
       
       
     });
@@ -616,9 +609,10 @@ $( document ).ready(function() {
     $( "#viewinitialbtn" ).click(function(e) {
         e.preventDefault();
 
-         var initial = '"model example"'+$("#initial").val() +' end "model example"';
+         //var initial = '"model example"'+$("#initial").val() +' end "model example"';
          
-         Jmol.script(jmolApplet0,'data '+initial+'; show data;' );
+         //Jmol.script(jmolApplet0,'data '+initial+'; show data;' );
+         Jmol.script(jmolApplet0,'load '+$("#initial").val()+'; show data;' );
 
     });
     
@@ -626,17 +620,12 @@ $( document ).ready(function() {
     
          var initial = '"model example"'+$("#initial").val() +' end "model example"';
          
-         Jmol.script(jmolApplet0,'data '+initial+'; show data;' );
-    
+         console.log(initial);
+         
+         //Jmol.script(jmolApplet0,'data '+initial+'; show data;' );
+         Jmol.script(jmolApplet0,'load '+$("#initial").val()+'; show data;' );
     
     
 
 
 });
-
-
-
-
-
-
-

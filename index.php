@@ -32,8 +32,8 @@ if ($USER->instructor) {
             }
             
             $inst = '';
-            
-
+     
+                       
 
 } else {
 
@@ -43,7 +43,6 @@ if ($USER->instructor) {
                     ':LI' => $LINK->id
                 )
             );
-            
 
             if ($row) {
                     $initial = $row['initial'];
@@ -54,83 +53,69 @@ if ($USER->instructor) {
                     $initial = false;
             }
             
-            
             $inst = "style='display: none;'";
             
 }
 
 
-
-
-
-
-
-
 $OUTPUT->header();
 $OUTPUT->bodyStart();
-$OUTPUT->flashMessages();
-?>
 
+?>
+<div class="container">
+
+<?php  if ($USER->instructor) { ?>
+<h3>Initial Settings</h3>
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>JSMol Model Kit</title>
-    
-    <style type="text/css">
-    </style>
-
-</head>
-
-<body>
+<div class="row">
+    <div class="col-md-10">
+        <div class="well">
 
 
-<?php include("jsmol.php"); 
+            <input type="hidden" id="ajax" name="ajax" value="<?php echo(addSession('ajax.php'))?>">
 
-//$initial = '';
-?>
+            <div <?=$inst?> >
+
+             
 
 
-   <input type="hidden" id="ajax" name="ajax" value="<?php echo(addSession('ajax.php'))?>">
-   
-   <div <?=$inst?> >
-   <form id="setupform" action="index.php" method="post">   
+
             
+                        <form class="form-horizontal" id="setupform" action="index.php" method="post">   
+                        
+                            <div class="form-group" >
+                                 <label>Construct an initial molecule below, click "Set Initial", then click "Save".</small></label><br>
+                                <button class="btn btn-primary" id="initialbtn">Set Initial</button>
+                                <button class="btn btn-primary" id="viewinitialbtn">View Initial</button>
+                                <input class="btn btn-success pull-right" type="submit" name="save" value="Save">
+                            </div>
+                            <div class="form-group" >
+                                <label for="initial">Initial molfile <small>(if not set methane will be displayed)</small></label>
+                                <textarea class="form-control" name="initial" id="initial"><?=$initial?></textarea>
 
-                    
-            <input class="btn btn-xs btn-primary" type="submit" name="save" value="Save">
-        
-            <div id="instr_cntrls" class="form-group" >
-            
-                    <div class="row">
-
-
-
-                      <div class="col-xs-6">
-
-
-                        <button class="btn btn-xs btn-primary" id="initialbtn">Set Initial</button>
-                        <button class="btn btn-xs btn-primary" id="viewinitialbtn">View Initial</button>
-                        <textarea class="form-control" name="initial" id="initial"><?=$initial?></textarea>
+                            </div> 
+                                        
+                              
+                        </form>                   
                         
 
-                        
-
-                      </div> 
-                        
-                    </div>
-                    
-                    
-
-               
-            </div>  
-    </form>
+            </div>
+        </div>
     </div>
+</div>
 
-
-</body>
-</html>
 
 <?php
+  } else {
+?>
+  
+  
+ <textarea style="display:none" class="form-control" name="initial" id="initial"><?=$initial?></textarea>
+  
+  
+<?php }
+
+include("jsmol.php"); 
+
 $OUTPUT->footer();
 

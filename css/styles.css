@@ -1,0 +1,104 @@
+
+.translate-model {
+
+background-image: url("../images/translate-model.png");
+
+background-size: 20px 20px;
+background-repeat: no-repeat;
+background-position: center;
+width: 50px;
+
+}
+
+.rotate-model {
+
+background-image: url("../images/rotate-model.png");
+
+background-size: 20px 20px;
+background-repeat: no-repeat;
+background-position: center;
+width: 50px;
+
+}
+
+.move-atom {
+
+background-image: url("../images/move-atom.png");
+
+background-size: 20px 20px;
+background-repeat: no-repeat;
+background-position: center;
+width: 50px;
+
+}
+
+
+.delete-bond {
+
+background-image: url("../images/delete-bond.png");
+
+background-size: 15px 15px;
+background-repeat: no-repeat;
+background-position: center;
+width: 50px;
+
+}
+
+.delete-atom {
+background-image: url("../images/delete-atom.png");
+
+background-size: 20px 20px;
+background-repeat: no-repeat;
+background-position: center;
+width: 50px;
+}
+.atombtn {
+  font-size: large !important; 
+}
+
+.K-Button-Group
+    {
+      
+      height: 35px;
+      
+    }
+    
+    .GlyphButton .K-Pri-Glyph-Content
+    {
+      width: 24px;
+      height: 24px;
+      background-repeat: no-repeat;
+    }
+    
+    
+    
+#ptbutton{
+
+background-image: url("../images/periodic-table_black.svg");
+
+background-size: 25px 25px;
+background-repeat: no-repeat;
+background-position: center;
+
+}
+
+
+#jsmoldiv {
+  width:90%;
+  height:65vw;
+  max-width:700px;
+  max-height:500px;
+  display:inline; /* needed for horiz. centering */
+}
+
+#radioButtonGroup0 a{
+
+padding: 5px;
+
+}
+
+#radioButtonGroup2 a{
+
+padding: 5px;
+
+}
