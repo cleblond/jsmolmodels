@@ -7,6 +7,7 @@
 
 <link rel="stylesheet" type="text/css" href="css/styles.css" />
 <script type="text/javascript" src="/jmol/jsmol/JSmol.min.js"></script>
+<!-- <script type="text/javascript" src="/jmol/jsmol/JSmol.min.js"></script> -->
 
 <!-- <script type="text/javascript" src="/jmol-16.1.45/jsmol/JSmol.min.js"></script> -->
 
@@ -28,7 +29,7 @@
 
 
 
-  <div  style="margin-bottom: -1px; width: 100%; white-space: nowrap; display: inline-block; padding-left: 57px;" role="toolbar" aria-label="...">
+  <div  style="margin-top: 20px; margin-bottom: -1px; width: 100%; white-space: nowrap; display: inline-block; padding-left: 57px;" role="toolbar" aria-label="...">
 
 
           <div data-widget="Kekule.Widget.ButtonGroup">
@@ -67,6 +68,8 @@
 
             <!-- <a onclick='procBtn("rotateB")' title="Rotate about bond/Set dihedral angle" data-widget="Kekule.Widget.RadioButton"  class="GlyphButton K-Chem-RotateLeft" ></a>-->
             <a onclick='procBtn("optimizeM")' title="Optimize Structure" data-widget="Kekule.Widget.Button" class="Button"><i class="fa fa-3x fa-motorcycle"></i></a>
+            
+            <a onclick='invertStereo()' title="Invert stereocenter" data-widget="Kekule.Widget.Button" class="Button"><i class="fa fa-2x fa-arrows-alt"></i></a>
             
           </div>
           

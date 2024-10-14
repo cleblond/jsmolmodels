@@ -8,10 +8,12 @@ use \Tsugi\Core\LTIX;
 $LTI = LTIX::requireData();
 $p = $CFG->dbprefix;
 
+
+/*
 echo"<pre>";
 var_dump($_POST);
 echo"</pre>";
-
+*/
 
 if ($USER->instructor) {
 
@@ -19,8 +21,17 @@ if ($USER->instructor) {
            //if ($_POST['action'] == "save") {
                  if ($_POST['initial']) {
                       $initial = $_POST['initial'];
+                 } else {
+                      $initial = '';
+                 }
+                 
+                 $stereo = 0;
+                 if (isset($_POST['showstereo'])) {
+                      $stereo = 1;
                  
                  } 
+                 
+                 
              
                  //setting
                  //$settings = new stdClass();
@@ -30,13 +41,14 @@ if ($USER->instructor) {
                  
                  //save the initial and answer   
                  $query = $PDOX->queryDie("INSERT INTO {$p}jsmolmodels
-                        (link_id, user_id, initial)
-                        VALUES ( :LI, :UI, :IN)
-                        ON DUPLICATE KEY UPDATE initial=:IN",
+                        (link_id, user_id, initial, showstereo)
+                        VALUES ( :LI, :UI, :IN, :SHO)
+                        ON DUPLICATE KEY UPDATE initial=:IN, showstereo=:SHO",
                         array(
                             ':LI' => $LINK->id,
                             ':UI' => $USER->id,
-                            ':IN' => $initial
+                            ':IN' => $initial,
+                            ':SHO' => $stereo 
                             //':AN' => $_POST["answer"],
                             //':ST' => json_encode($settings)
                         )

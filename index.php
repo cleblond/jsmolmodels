@@ -65,11 +65,16 @@ $OUTPUT->bodyStart();
 <div class="container">
 
 <?php  if ($USER->instructor) { ?>
-<h3>Initial Settings</h3>
+
+<a href="#" id="toggle-settings" class="btn btn-primary">Show Settings</a>
+
+
+
+
 <!DOCTYPE html>
-<div class="row">
+<div class="row" >
     <div class="col-md-10">
-        <div class="well">
+        <div class="well" id="settings" style="display:none; margin-top: 20px;" >
 
 
             <input type="hidden" id="ajax" name="ajax" value="<?php echo(addSession('ajax.php'))?>">
@@ -82,7 +87,8 @@ $OUTPUT->bodyStart();
 
             
                         <form class="form-horizontal" id="setupform" action="index.php" method="post">   
-                        
+                            <input type="checkbox" id="showstereo" name="showstereo" value="showstereo">
+<label for="vehicle1">Show Stereochemistry</label><br>
                             <div class="form-group" >
                                  <label>Construct an initial molecule below, click "Set Initial", then click "Save".</small></label><br>
                                 <button class="btn btn-primary" id="initialbtn">Set Initial</button>
@@ -115,7 +121,20 @@ $OUTPUT->bodyStart();
   
 <?php }
 
+//echo $initial;
+
 include("jsmol.php"); 
 
 $OUTPUT->footer();
+?>
+
+<script>
+
+var initial = `<?=$initial?>`;
+
+
+
+</script>
+
+
 

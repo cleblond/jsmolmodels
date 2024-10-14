@@ -1,69 +1,59 @@
-	delete Jmol._tracker;
+delete Jmol._tracker;
 
-	Jmol._isAsync = false;
+Jmol._isAsync = false;
 
-                        // last update 2/18/2014 2:10:06 PM
-                        var jmolApplet = "jmolApplet0";
-                        var jmolApplet0; // set up in HTML table, below
+                    // last update 2/18/2014 2:10:06 PM
+var jmolApplet = "jmolApplet0";
+var jmolApplet0; // set up in HTML table, below
 
-                        jmol_isReady = function(applet) {
-                        	//document.title = (applet._id + " - Jmol " + Jmol.___JmolVersion)
-                        	Jmol._getElement(applet, "appletdiv").style.border="1px solid gray"
-                        }		
 
-                        var Info = {
-                        	width: '100%',
-                        	height: '100%',
-                        	debug: false,
-                        	zIndexBase: 1000,
-	                        deferApplet: false,
-	                        deferUncover: false,
-	                        //deferApplet: true,
-	                        color: "0xFFFFFF",
-	                        addSelectionOptions: true,
-	                        use: "HTML5",   // JAVA HTML5 WEBGL are all options
-	                        j2sPath: "/jmol/jsmol/j2s", // this needs to point to where the j2s directory is.
-	                        //jarPath: "/jmol/jsmol/java",// this needs to point to where the java directory is.
-	                        //jarFile: "JmolAppletSigned.jar",
-	                        //isSigned: true,
-	                        script: "set zoomlarge false;set antialiasDisplay; frank OFF; set modelKitMode true; set StructureModifiedCallback 'StructureModifiedCallback'; set MessageCallback 'MessageCallback'; set PickCallback 'PickCallback'; set LoadStructCallback 'LoadStructCallback';",
-	                        
-	                        serverURL: "/jmol/jsmol/php/jsmol.php",
-	                        readyFunction: jmol_isReady,
-	                        disableJ2SLoadMonitor: true,
-	                        disableInitialConsole: true,
-	                        allowJavaScript: true
-	                        //defaultModel: "$dopamine",
-	                        //console: "none", // default will be jmolApplet0_infodiv, but you can designate another div here or "none"
-	                    }
 
-	                    $(document).ready(function() {
-	                    	$("#jsmoldiv").html(Jmol.getAppletHtml("jmolApplet0", Info))
-	                    })
-	                    var modelEdit = true;
-	                    var lastPrompt=0;
-	                    var undos = ["", "", "", "", "" ,"", "", "", "", ""];
-	                    var redos = ["", "", "", "", "" ,"", "", "", "", ""];
-	                    var stereoToggle = 1;
-	                    var modelBkg1 = "#0000ff";
-	                    var fileType = "mol";
-                       /* 
-                        var initmolfile = "string\\n\
-__Jmol-14_08271808363D 1   1.00000     0.00000     0\n\
-Jmol version 14.7.5_2016.12.02  2016-12-02 07:03 EXTRACT: ({0:4})\n\
-5  4  0  0  0  0              1 V2000\n\
-0.00000   0.00000   0.00000 C   0  0  0  0  0  0\n\
-0.63000   0.63000   0.63000 H   0  0  0  0  0  0\n\
--0.63000  -0.63000   0.63000 H   0  0  0  0  0  0\n\
--0.63000   0.63000  -0.63000 H   0  0  0  0  0  0\n\
-0.63000  -0.63000  -0.63000 H   0  0  0  0  0  0\n\
-1  5  1  0  0  0\n\
-1  2  1  0  0  0\n\
-3  1  1  0  0  0\n\
-4  1  1  0  0  0\n\
-M  END\n\
-";
-*/
+jmol_isReady = function(applet) {
+	//document.title = (applet._id + " - Jmol " + Jmol.___JmolVersion)
+	Jmol._getElement(applet, "appletdiv").style.border="1px solid gray";
+	console.log("READDDY");
+}		
+
+
+//console.log(initial.value);
+
+
+var Info = {
+	width: '100%',
+	height: '100%',
+	debug: false,
+	zIndexBase: 1000,
+    deferApplet: false,
+    deferUncover: false,
+    //deferApplet: true,
+    color: "0xFFFFFF",
+    addSelectionOptions: true,
+    use: "HTML5",   // JAVA HTML5 WEBGL are all options
+    //j2sPath: "/jmol/jsmol/j2s", // this needs to point to where the j2s directory is.
+    j2sPath: "/jmol/jsmol/j2s", // this needs to point to where the j2s directory is.
+    //jarPath: "/jmol/jsmol/java",// this needs to point to where the java directory is.
+    //jarFile: "JmolAppletSigned.jar",
+    //isSigned: true,
+    script: "set zoomlarge false;set antialiasDisplay; frank OFF;  set StructureModifiedCallback 'StructureModifiedCallback'; set PickCallback 'PickCallback'; set LoadStructCallback 'LoadStructCallback'; set modelKitMode true; set showAtomTypes true",
+    
+    serverURL: "/jmol/jsmol/php/jsmol.php",
+    //readyFunction: jmol_isReady,
+    disableJ2SLoadMonitor: true,
+    disableInitialConsole: true,
+    allowJavaScript: true
+    //defaultModel: "$dopamine",
+    //console: "none", // default will be jmolApplet0_infodiv, but you can designate another div here or "none"
+}
+
+
+var modelEdit = true;
+var lastPrompt=0;
+var undos = ["", "", "", "", "" ,"", "", "", "", ""];
+var redos = ["", "", "", "", "" ,"", "", "", "", ""];
+var stereoToggle = 1;
+var modelBkg1 = "#0000ff";
+var fileType = "mol";
+
 
 
 function jmv(scpt) { return Jmol.evaluateVar(jmolApplet0, scpt); }
@@ -209,6 +199,23 @@ function showPT() {
 			$('#ptModal').modal('show');
 
 }
+
+
+
+calcscript = ";select *;calculate chirality;set labelfor {*} \"%[chirality]\";"
+
+
+
+
+function invertStereo() {
+
+    console.log("Invert Stereo");
+    echo("Click on a stereocenter to invert i.");
+    jmscript("set picking invertstereo;");
+
+}
+
+
 
 
 function moveMol(num) {
@@ -387,6 +394,7 @@ function procBtn(scpt,d) {
 	
 	
 	if (scpt.substring(0, 4).toLowerCase() == "undo")  {
+	    console.log("undo");
 		mkResetMin();
 		modelEdit = true;
 		replacementBond = "";
@@ -421,13 +429,243 @@ function stashUndo(str) {
 
 
 
+
+function calculateChiralityForAtom(atomIndex) {
+        
+            //console.log(atomIndex);
+            
+            jmscript(`
+          
+                select atomIndex=${atomIndex};
+                label off;
+                print atomIndex;
+                calculate chirality;
+                taVar1 = {selected}.chirality;
+                print taVar1;
+                //if (taVar1 == "") { taVar1 = "**" };
+                if ({selected}.element=="H") { taVar1=ghpc() };
+                if ({selected}.label == "R" || {selected}.label == "S" || {selected}.label == "*" || {selected}.label == "E" || {selected}.label == "Z" || {selected}.label == "Hs" || {selected}.label == "Hr") {
+                    select selected or connected(double, selected);
+                    label "*"; label off;
+                } else {
+                    select selected or connected(double, selected);
+                    color labels black;
+                    set fontsize 12;
+                    background labels yellow;
+                    
+                    label @taVar1;
+                };
+                
+            `);
+        
+}
+
+        // Function to loop through all atoms and apply chirality calculation
+function calculateChiralityForAllAtoms() {
+
+            console.log('calculateChiralityForAllAtoms');
+            
+            var totalAtoms = Jmol.evaluateVar(jmolApplet0, "{*}.size;");
+            
+            console.log("Total atoms: ", totalAtoms);
+
+            for (var i = 0; i < totalAtoms; i++) {
+                calculateChiralityForAtom(i); // Apply chirality calculation for each atom
+            }
+}
+
+
+function calculateEZChirality() {
+            console.log("Calculating E/Z Chirality for Double Bonds");
+            //jsmolApplet = Jmol.getApplet("jmolApplet0", Info);
+            // Get the number of bonds in the structure
+            //Jmol.script(jmolApplet0, `print bond[${i}].order`);
+            //var bondCount = Jmol.evaluateVar(jmolApplet0, "{*}.bondCount");
+            //console.log("{*}.bondCount ", bondCount);
+            
+            //var totalAtoms = Jmol.evaluate(jmolApplet0, "{*}.size;");
+            //var totalAtoms2 = Jmol.scriptEcho(jmolApplet0, "print {*}.size");
+            //console.log("total atoms2="+totalAtoms2);
+            //console.log("total atoms="+totalAtoms);
+            //console.log(totalAtoms*bondCount);
+             
+            //var bondstotal = totalAtoms*bondCount;
+            
+            //bondCount = parseInt(bondCount); // Convert the output to an integer
+            //console.log(bondCount);
+
+            //Jmol.script(jmolApplet0, "calculate");
+            //Jmol.script(jmolApplet0, "set modelKitMode off;");
+            //var bondInfo = Jmol.getPropertyAsArray(jmolApplet0, "bondInfo");
+            //var bondInfo = Jmol.scriptWait(jmolApplet0, bondInfo`);
+            //console.log(bondInfo); // Output bond data to the console
+            //console.log(JSON.parse(Jmol.getPropertyAsJSON(jmolApplet0,  "bondInfo")));
+            
+            
+            //works
+            jmscript(`
+          
+                select connected(double);
+                label off;
+                print atomIndex;
+                calculate chirality;
+                taVar1 = {selected}.chirality;
+                print "here";
+                print taVar1;
+                print "here2";
+                //if (taVar1 == "") { taVar1 = "**" };
+                if ({selected}.element=="H") { taVar1=ghpc() };
+                if ({selected}.label == "R" || {selected}.label == "S" || {selected}.label == "*" || {selected}.label == "E" || {selected}.label == "Z" || {selected}.label == "Hs" || {selected}.label == "Hr") {
+                    select selected or connected(double, selected);
+                    label "*"; label off;
+                } else {
+                    select selected ;
+                    color label pink;
+                    set fontsize 10;
+                    background labels red;
+            
+                    label @taVar1;
+                };
+                
+            `);
+           
+             /*
+             jmscript(`
+          
+                select connected(double);
+                label off;
+                print atomIndex;
+                calculate chirality;
+                taVar1 = {selected}.chirality;
+                print taVar1;
+                //if (taVar1 == "") { taVar1 = "**" };
+                if ({selected}.element=="H") { taVar1=ghpc() };
+                if ({selected}.label == "R" || {selected}.label == "S" || {selected}.label == "*" || {selected}.label == "E" || {selected}.label == "Z" || {selected}.label == "Hs" || {selected}.label == "Hr") {
+                    select selected or connected(double, selected);
+                    label "*"; label off;
+                } else {
+                    select selected ;
+                    color label pink;
+                    set fontsize 10;
+                    background labels green;
+                    measure;
+                    label %d @midpoint;
+                    measure off; 
+                };
+                
+            `);
+            */
+            
+            //jmscript(`set echo myecho 350 150;
+//echo this is|myecho; set echo myecho center`);
+            
+            
+            /*
+            
+            jmscript(`
+                select connected(double);                        
+                define atom1 {selected}[1];                      
+                define atom2 {selected}[2];         
+                // Get coordinates of the first atom
+                var x1 = {atom1}.x;
+                var y1 = {atom1}.y;
+                var z1 = {atom1}.z;
+
+                // Get coordinates of the second atom
+                var x2 = {atom2}.x;
+                var y2 = {atom2}.y;
+                var z2 = {atom2}.z;
+
+                // Calculate midpoint
+                var midX = (x1 + x2) / 2;
+                var midY = (y1 + y2) / 2;
+                var midZ = (z1 + z2) / 2;
+                print midX;
+                print midY;
+                print midZ;
+                //set echo top 10 15 20;
+                set echo myecho;
+                echo {@midX @midY @midZ};
+                echo this is|myecho;
+
+                //echo [midX midY midZ] "Distance: " + dist;
+            `);
+            */
+            /*
+            jmscript(`
+                set echo 12 22 31;                            // Manually calculate the midpoint and place the echo
+                echo "Double Bond";                             // Display the label
+                color echo yellow;                              // Set the color of the echo text
+                font echo 18;                                   // Set the font size for the echo
+            `);
+            */
+            
+            
+            
+            //var savedState = Jmol.scriptWait(jmolApplet0, 'write state');
+            //Jmol.script(jmolApplet0, 'zap;');
+            //Jmol.script(jmolApplet0, savedState);
+            console.log(JSON.parse(Jmol.getPropertyAsJSON(jmolApplet0,  "bondInfo")));
+            
+            
+
+            // Loop through each bond
+            
+            /*
+            for (var i = 0; i < bondstotal; i++) {
+                // Get bond order
+                var bondOrder = Jmol.scriptWait(jmolApplet0, `print bond[${i}].order`);
+                //console.log(bondOrder);
+                // Check if it's a double bond (order 2)
+                if (bondOrder == 2) {
+                    // Get the atom indices for the atoms involved in this double bond
+                    var atom1 = Jmol.evaluate(jsmolApplet, `bond[${i}].atom1.index`);
+                    var atom2 = Jmol.evaluate(jsmolApplet, `bond[${i}].atom2.index`);
+                    
+                    console.log(`Double bond found between atoms ${atom1} and ${atom2}`);
+                    
+                    // Calculate chirality for the atoms involved in the bond
+                    jmscript(`
+                        select atomIndex=${atom1};
+                        calculate chirality;
+                        select atomIndex=${atom2};
+                        calculate chirality;
+                    `);
+                }
+            }
+            */
+        }
+
+
+
+
+
+
+
 function LoadStructCallback(a,b,c,d,e,f,g,h) {
     //console.log('LSCB');
+    console.log("loadstructcallback modelkitmode="+modelEdit);
     
+    //console.log(b);
+    //console.log(''+f);
+    
+    var totalAtoms2 = Jmol.scriptEcho(jmolApplet0, "print {*}.size");
+    //console.log("total atoms2 LSCallBack="+totalAtoms2);
+    //*var showstereo = 'select {*}; calculate chirality; select atomIndex=_atomPicked; taVar1 = {selected}.chirality; if (taVar1 == "") { taVar1 = "*" }; if ({selected}.element=="H") { taVar1=ghpc() }; if ({selected}.label == "R" || {selected}.label == "S" || {selected}.label == "*" || {selected}.label == "E" || {selected}.label == "Z" || {selected}.label == "Hs" || {selected}.label == "Hr") {select selected or connected(double, selected); label "*"; label off;} else { select selected or connected(double, selected); color label pink; set fontsize 10; background labels red; label @taVar1;}';
+    
+    
+    
+    calculateChiralityForAllAtoms();
     
     jmscript('set modelKitMode true;');
+    
+    //jmscript('set modelKitMode true;' + showstereo);
     //console.log(modelEdit);
     //console.log(spart1);
+    
+    calculateEZChirality();
+    
+    
     if (modelEdit) { return null; }
 
 
@@ -436,21 +674,38 @@ function LoadStructCallback(a,b,c,d,e,f,g,h) {
 
 
 function StructureModifiedCallback(x, y, z) {
-    //console.log('SMCB');
+    console.log("structuremodifiedcallback");
+    var xx = '' + x;
+    //console.log('' + x, '' + y,'' + z);
+    //if
+    
+
+    
 
     if (y > 0) {
+        console.log("y > 0");
+        //calculateChiralityForAllAtoms();
+        //calculateEZChirality();
     	stashUndo();
+    	
     	jmscript('select *; wireframe 0.15; spacefill 23%; boundbox {*};centerat boundbox; color label pink;set fontsize 12; label ""; select formalCharge <> 0;label %C;unbind; unbind "DOUBLE"; javascript stashMol(), set modelKitMode true;');
     }
 }
 
 
 function PickCallback(x, y, z) {
-        //console.log('PICKCB');
-	//alert(x + "||||" + y + "||||" +  z);
+    console.log('PICKCB');
+	console.log(x + "||||" + y + "||||" +  z);
 	var scpt = ""; var at1 = ""; var at2 = "";
 	if (y.indexOf("inverted") > -1) {
+	
+	    console.log("PCB inverted");
+	    calculateChiralityForAllAtoms();
+	    /*
 		scpt= 'select _H; label ""; select atomIndex=' + z + ';var x = {selected}.chirality; if (x == "") { x = "*" } if ({selected}.label != "R" && {selected}.label != "S" && {selected}.label != "*" && {selected}.label != "E" && {selected}.label != "Z") { select selected or connected(double, selected); label "."; label off} else { select selected or connected(double, selected); color label pink; set fontsize 10; background labels red; label @x;}'; mkResetMin();echo();stashMol();jmscript(scpt);
+	
+	    */
+	
 	}
 	if (deleteModel) {
 		at1 = y.split("#")[1].split(" ")[0];
@@ -458,12 +713,12 @@ function PickCallback(x, y, z) {
 		jmscript(scpt);
 	}
 	if (colorChange) {
-		scpt = 'select {*}; calculate chirality; select atomIndex=_atomPicked; taVar1 = {selected}.chirality; if (taVar1 == "") { taVar1 = "*" }; if ({selected}.element=="H") { taVar1=ghpc() }; if ({selected}.label == "R" || {selected}.label == "S" || {selected}.label == "*" || {selected}.label == "E" || {selected}.label == "Z" || {selected}.label == "Hs" || {selected}.label == "Hr") {select selected or connected(double, selected); label "*"; label off;slab()} else { select selected or connected(double, selected); color label pink; set fontsize 10; background labels red; label @taVar1;slab()}';
+		scpt = 'select {*}; calculate chirality; select atomIndex=_atomPicked; taVar1 = {selected}.chirality; if (taVar1 == "") { taVar1 = "*" }; if ({selected}.element=="H") { taVar1=ghpc() }; if ({selected}.label == "R" || {selected}.label == "S" || {selected}.label == "*" || {selected}.label == "E" || {selected}.label == "Z" || {selected}.label == "Hs" || {selected}.label == "Hr") {select selected or connected(double, selected); label "*"; label off;} else { select selected or connected(double, selected); color label pink; set fontsize 10; background labels red; label @taVar1;}';
 		jmscript(scpt);
 	}
 }
 
-/*
+
 function stashMol() { // Set chemagicTEMP for model transfer data
 	if (stereoToggle == 2 ) { jmscript("stereo " + modelstereo + ";background " + stereoBkg + ";select hydrogen or carbon; select not selected;color label white;label %e; select formalCharge <> 0; label %C");  if (fileType == "cif" || fileType == "pdb") { jmscript('select *;label ""'); } }
 	if (fileType == "spartan" || fileType == "cif" || fileType == "pdb") { return null; }
@@ -473,9 +728,9 @@ function stashMol() { // Set chemagicTEMP for model transfer data
 	}
 	return null;
 }
-*/
 
 	function getUndo() {
+	    console.log("getundo");
 		if (fileType != "mol") { return null; }
 		modelEdit = false;
 		var x; var y; var z; var stash;
@@ -547,6 +802,16 @@ function aClickActionB(num, result) {
 
 */
 $( document ).ready(function() {
+
+
+
+	$("#jsmoldiv").html(Jmol.getAppletHtml("jmolApplet0", Info))
+
+
+
+
+
+
     $( "#jmolApplet0_submit" ).after( '<button onclick="Jmol.loadFileFromDialog(jmolApplet0)">Load File</button>' );
 
 
@@ -561,6 +826,21 @@ $( document ).ready(function() {
         return indexed_array;
                    
     }
+
+
+    $('#toggle-settings').click(function(e) {
+      e.preventDefault();
+      var settingsDiv = $('#settings');
+      settingsDiv.toggle();
+      
+      // Update the button text based on the visibility of the settings div
+      if (settingsDiv.is(':visible')) {
+        $('#toggle-settings').text('Hide Settings');
+      } else {
+        $('#toggle-settings').text('Show Settings');
+      }
+    });
+
 
 
 	var table = Kekule.Widget.getWidgetById('peridicTable');
@@ -599,7 +879,9 @@ $( document ).ready(function() {
        //var molfile = Jmol.getPropertyAsString(jmolApplet0, "extractModel");
        
        var stateinfo = Jmol.getPropertyAsString(jmolApplet0, "stateInfo");
-       //console.log(stateinfo);
+       var stateinfojson = Jmol.getPropertyAsString(jmolApplet0, "stateInfo");
+       
+       console.log(Jmol.getPropertyAsJSON(jmolApplet0, "stateInfo"));
  
        $("#initial").val(stateinfo);
       
@@ -618,12 +900,12 @@ $( document ).ready(function() {
     
     
     
-         var initial = '"model example"'+$("#initial").val() +' end "model example"';
+         //var initial = '"model example"'+$("#initial").val() +' end "model example"';
          
-         console.log(initial);
+         //console.log(initial);
          
          //Jmol.script(jmolApplet0,'data '+initial+'; show data;' );
-         Jmol.script(jmolApplet0,'load '+$("#initial").val()+'; show data;' );
+         Jmol.script(jmolApplet0,'load '+initial+'; show data;' );
     
     
 
