@@ -49,6 +49,60 @@ var Info = {
 
 jmolApplet0 = Jmol.getApplet("jmolApplet0", Info);
 */
+
+
+delete Jmol._tracker;
+
+//Jmol._isAsync = false;
+
+                    // last update 2/18/2014 2:10:06 PM
+var jmolApplet;
+var jmolApplet0; // set up in HTML table, below
+
+var EZcalced = false;
+
+jmol_isReady = function(applet) {
+    //document.title = (applet._id + " - Jmol " + Jmol.___JmolVersion)
+    Jmol._getElement(applet, "appletdiv").style.border="1px solid gray";
+    console.log("READDDY");
+}		
+
+
+console.log(showsearch);
+
+
+var Info = {
+    width: 500,
+    height: 500,
+    debug: false,
+    zIndexBase: 1000,
+    deferApplet: false,
+    deferUncover: false,
+    //deferApplet: true,
+    color: "0xFFFFFF",
+    addSelectionOptions: true,
+    use: "HTML5",   // JAVA HTML5 WEBGL are all options
+    //j2sPath: "/jmol/jsmol/j2s", // this needs to point to where the j2s directory is.
+    j2sPath: "jmol-16.2.37/jsmol/j2s", // this needs to point to where the j2s directory is.
+    //jarPath: "/jmol/jsmol/java",// this needs to point to where the java directory is.
+    //jarFile: "JmolAppletSigned.jar",
+    //isSigned: true,
+    script: "set zoomlarge false; set antialiasDisplay; frank OFF;  set StructureModifiedCallback 'StructureModifiedCallback'; set PickCallback 'PickCallback'; set LoadStructCallback 'LoadStructCallback'; set elementkey On;  //set modelKitMode true; //set showAtomTypes true",
+    
+    serverURL: "jmol-16.2.37/jsmol/php/jsmol.php",
+    //readyFunction: jmol_isReady,
+    disableJ2SLoadMonitor: true,
+    disableInitialConsole: true,
+    allowJavaScript: true,
+    addSelectionOptions: showsearch
+    //defaultModel: "$dopamine",
+    //console: "none", // default will be jmolApplet0_infodiv, but you can designate another div here or "none"
+}
+
+jmolApplet0 = Jmol.getApplet("jmolApplet0", Info);
+
+
+
 var modelEdit = true;
 var lastPrompt=0;
 var undos = ["", "", "", "", "" ,"", "", "", "", ""];
@@ -535,19 +589,20 @@ function LoadStructCallback(a,b,c,d,e,f,g,h) {
     //console.log('LSCB');
     console.log("loadstructcallback modelkitmode="+modelEdit);
     
-    //console.log(b);
-    //console.log(''+f);
+    console.log(a,b,c,f);
+    console.log(''+f);
     
-    var totalAtoms2 = Jmol.scriptEcho(jmolApplet0, "print {*}.size");
+    //var totalAtoms2 = Jmol.scriptEcho(jmolApplet0, "print {*}.size");
     //console.log("total atoms2 LSCallBack="+totalAtoms2);
     //*var showstereo = 'select {*}; calculate chirality; select atomIndex=_atomPicked; taVar1 = {selected}.chirality; if (taVar1 == "") { taVar1 = "*" }; if ({selected}.element=="H") { taVar1=ghpc() }; if ({selected}.label == "R" || {selected}.label == "S" || {selected}.label == "*" || {selected}.label == "E" || {selected}.label == "Z" || {selected}.label == "Hs" || {selected}.label == "Hr") {select selected or connected(double, selected); label "*"; label off;} else { select selected or connected(double, selected); color label pink; set fontsize 10; background labels red; label @taVar1;}';
     
-    
-    calculateChirality();
+    if (f = 3) {
+        calculateChirality();
     //calculateChiralityForAllAtoms();
 
-    jmscript('set modelKitMode true;');
+        jmscript('set modelKitMode true; set showMenu false;');
     
+    }
     //jmscript('set modelKitMode true;' + showstereo);
     //console.log(modelEdit);
     //console.log(spart1);
@@ -571,15 +626,15 @@ function StructureModifiedCallback(x, y, z) {
         calculateChirality();
         //calculateChiralityForAllAtoms();
 
-    
+    stashUndo();
 
     if (y > 0) {
         console.log("y > 0");
 
 
-    	stashUndo();
     	
-    	jmscript('select *; wireframe 0.15; spacefill 23%; boundbox {*};centerat boundbox; color label pink;set fontsize 12; label ""; select formalCharge <> 0;label %C;unbind; unbind "DOUBLE"; javascript stashMol(), set modelKitMode true;');
+    	
+    	//jmscript('select *; wireframe 0.15; spacefill 23%; boundbox {*};centerat boundbox; color label pink;set fontsize 12; label ""; select formalCharge <> 0;label %C;unbind; unbind "DOUBLE"; javascript stashMol(), set modelKitMode true;');
     }
 }
 

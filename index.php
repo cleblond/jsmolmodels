@@ -59,13 +59,10 @@ if ($USER->instructor) {
                 $search =  $row['showsearch'] ? "checked" : "";
                 $sterval = $row['showstereo'];
                 $searval = $row['showsearch'];
-                var_dump($searval);
-                    
-                    //var_dump($answer);
             } else {
                     $initial = false;
-                    $sterval = 0;
-                    $searval = 0;
+                    $sterval = 1;
+                    $searval = 1;
             }
             
             $inst = "style='display: none;'";
@@ -84,7 +81,7 @@ var initial = `<?=$initial?>`;
 var showstereo = <?=$sterval?>;
 var showsearch = <?=$searval?>;
 
-console.log(showsearch);
+//console.log(showsearch);
 
 </script>
 
