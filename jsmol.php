@@ -62,14 +62,14 @@
             
             <a id="ringbtn" class="GlyphButton" title="Ring structures tool" data-widget="Kekule.Widget.CompactButtonSet" data-text="" data-show-text="false" data-button-set="#radioButtonGroup2"></a>
             
-            <a onclick='procBtn("correctH")' style="font-size:15px;" title="Add Hydrogens" data-text="<b>H</b>" data-widget="Kekule.Widget.Button" class="Button"></a>
+            <a onclick='procBtn("correctH")' style="font-size:15px;" title="Add Hydrogens"  data-widget="Kekule.Widget.Button" class="Button">H</a>
             
             <a onclick='moveMol(1)' title="Move atoms or structure" data-widget="Kekule.Widget.CompactButtonSet" class="GlyphButton" data-button-set="#radioButtonGroup4"><i class="fa fa-2x fa-arrows-alt"></i></a>
 
             <!-- <a onclick='procBtn("rotateB")' title="Rotate about bond/Set dihedral angle" data-widget="Kekule.Widget.RadioButton"  class="GlyphButton K-Chem-RotateLeft" ></a>-->
             <a onclick='procBtn("optimizeM")' title="Optimize Structure" data-widget="Kekule.Widget.Button" class="Button"><i class="fa fa-3x fa-motorcycle"></i></a>
             
-            <a onclick='invertStereo()' title="Invert stereocenter" data-widget="Kekule.Widget.Button" class="Button"><i class="fa fa-2x fa-arrows-alt"></i></a>
+            <a onclick='invertStereo()' title="Invert stereocenter" data-widget="Kekule.Widget.Button" class="Button"><i class="fa fa-3x fa-exchange"></i></a>
             
           </div>
           
@@ -77,10 +77,13 @@
           <div id="radioButtonGroup0" data-widget="Kekule.Widget.ButtonGroup" data-layout="1" style="horizontal-align: top; margin-right: -10px">
           
             <a onclick='procBtn("atomH")' title="Add H" data-widget="Kekule.Widget.RadioButton"  class="Button atombtn" >H</a>
+            <a onclick='procBtn("atomB")' title="Add B" data-widget="Kekule.Widget.RadioButton"  class="Button atombtn" >B</a>
             <a onclick='procBtn("atomC")' title="Add C" data-widget="Kekule.Widget.RadioButton"  class="Button atombtn" data-checked="true">C</a>
             <a onclick='procBtn("atomN")' title="Add N" data-widget="Kekule.Widget.RadioButton"  class="Button atombtn" >N</a>
-	        <a onclick='procBtn("atomO")' title="Add O" data-widget="Kekule.Widget.RadioButton"  class="Button atombtn" >O</a>
+	    <a onclick='procBtn("atomO")' title="Add O" data-widget="Kekule.Widget.RadioButton"  class="Button atombtn" >O</a>
+            <a onclick='procBtn("atomF")' title="Add F" data-widget="Kekule.Widget.RadioButton"  class="Button atombtn" >F</a>
             <a onclick='procBtn("atomCl")' title="Add Cl" data-widget="Kekule.Widget.RadioButton"  class="Button atombtn" >Cl</a>
+            <a onclick='procBtn("atomBr")' title="Add Br" data-widget="Kekule.Widget.RadioButton"  class="Button atombtn" >Br</a>
             <a id="ptbutton" onclick='showPT()' title="Add other atoms" data-widget="Kekule.Widget.RadioButton"  class="Button atombtn" >&nbsp;&nbsp;</a>
           
           </div> 

@@ -6,7 +6,7 @@ Jmol._isAsync = false;
 var jmolApplet = "jmolApplet0";
 var jmolApplet0; // set up in HTML table, below
 
-
+var EZcalced = false;
 
 jmol_isReady = function(applet) {
 	//document.title = (applet._id + " - Jmol " + Jmol.___JmolVersion)
@@ -461,6 +461,8 @@ function calculateChiralityForAtom(atomIndex) {
 }
 
         // Function to loop through all atoms and apply chirality calculation
+        
+/*
 function calculateChiralityForAllAtoms() {
 
             console.log('calculateChiralityForAllAtoms');
@@ -473,33 +475,19 @@ function calculateChiralityForAllAtoms() {
                 calculateChiralityForAtom(i); // Apply chirality calculation for each atom
             }
 }
+*/
 
 
+
+function calculateChirality() {
+
+      jmscript('select *;calculate chirality;set labelfor {*} \"%[chirality]\"; select *;font label 20;set labeloffset 10 10; background label yellow;color labels black;set labelfor {*} \"%[chirality]\";');
+}
+
+/*
 function calculateEZChirality() {
             console.log("Calculating E/Z Chirality for Double Bonds");
-            //jsmolApplet = Jmol.getApplet("jmolApplet0", Info);
-            // Get the number of bonds in the structure
-            //Jmol.script(jmolApplet0, `print bond[${i}].order`);
-            //var bondCount = Jmol.evaluateVar(jmolApplet0, "{*}.bondCount");
-            //console.log("{*}.bondCount ", bondCount);
-            
-            //var totalAtoms = Jmol.evaluate(jmolApplet0, "{*}.size;");
-            //var totalAtoms2 = Jmol.scriptEcho(jmolApplet0, "print {*}.size");
-            //console.log("total atoms2="+totalAtoms2);
-            //console.log("total atoms="+totalAtoms);
-            //console.log(totalAtoms*bondCount);
-             
-            //var bondstotal = totalAtoms*bondCount;
-            
-            //bondCount = parseInt(bondCount); // Convert the output to an integer
-            //console.log(bondCount);
 
-            //Jmol.script(jmolApplet0, "calculate");
-            //Jmol.script(jmolApplet0, "set modelKitMode off;");
-            //var bondInfo = Jmol.getPropertyAsArray(jmolApplet0, "bondInfo");
-            //var bondInfo = Jmol.scriptWait(jmolApplet0, bondInfo`);
-            //console.log(bondInfo); // Output bond data to the console
-            //console.log(JSON.parse(Jmol.getPropertyAsJSON(jmolApplet0,  "bondInfo")));
             
             
             //works
@@ -520,124 +508,20 @@ function calculateEZChirality() {
                     label "*"; label off;
                 } else {
                     select selected ;
-                    color label pink;
+                    color label black;
                     set fontsize 10;
-                    background labels red;
+                    background labels yellow;
             
                     label @taVar1;
                 };
                 
             `);
-           
-             /*
-             jmscript(`
-          
-                select connected(double);
-                label off;
-                print atomIndex;
-                calculate chirality;
-                taVar1 = {selected}.chirality;
-                print taVar1;
-                //if (taVar1 == "") { taVar1 = "**" };
-                if ({selected}.element=="H") { taVar1=ghpc() };
-                if ({selected}.label == "R" || {selected}.label == "S" || {selected}.label == "*" || {selected}.label == "E" || {selected}.label == "Z" || {selected}.label == "Hs" || {selected}.label == "Hr") {
-                    select selected or connected(double, selected);
-                    label "*"; label off;
-                } else {
-                    select selected ;
-                    color label pink;
-                    set fontsize 10;
-                    background labels green;
-                    measure;
-                    label %d @midpoint;
-                    measure off; 
-                };
-                
-            `);
-            */
-            
-            //jmscript(`set echo myecho 350 150;
-//echo this is|myecho; set echo myecho center`);
-            
-            
-            /*
-            
-            jmscript(`
-                select connected(double);                        
-                define atom1 {selected}[1];                      
-                define atom2 {selected}[2];         
-                // Get coordinates of the first atom
-                var x1 = {atom1}.x;
-                var y1 = {atom1}.y;
-                var z1 = {atom1}.z;
+             
 
-                // Get coordinates of the second atom
-                var x2 = {atom2}.x;
-                var y2 = {atom2}.y;
-                var z2 = {atom2}.z;
-
-                // Calculate midpoint
-                var midX = (x1 + x2) / 2;
-                var midY = (y1 + y2) / 2;
-                var midZ = (z1 + z2) / 2;
-                print midX;
-                print midY;
-                print midZ;
-                //set echo top 10 15 20;
-                set echo myecho;
-                echo {@midX @midY @midZ};
-                echo this is|myecho;
-
-                //echo [midX midY midZ] "Distance: " + dist;
-            `);
-            */
-            /*
-            jmscript(`
-                set echo 12 22 31;                            // Manually calculate the midpoint and place the echo
-                echo "Double Bond";                             // Display the label
-                color echo yellow;                              // Set the color of the echo text
-                font echo 18;                                   // Set the font size for the echo
-            `);
-            */
-            
-            
-            
-            //var savedState = Jmol.scriptWait(jmolApplet0, 'write state');
-            //Jmol.script(jmolApplet0, 'zap;');
-            //Jmol.script(jmolApplet0, savedState);
-            console.log(JSON.parse(Jmol.getPropertyAsJSON(jmolApplet0,  "bondInfo")));
-            
-            
-
-            // Loop through each bond
-            
-            /*
-            for (var i = 0; i < bondstotal; i++) {
-                // Get bond order
-                var bondOrder = Jmol.scriptWait(jmolApplet0, `print bond[${i}].order`);
-                //console.log(bondOrder);
-                // Check if it's a double bond (order 2)
-                if (bondOrder == 2) {
-                    // Get the atom indices for the atoms involved in this double bond
-                    var atom1 = Jmol.evaluate(jsmolApplet, `bond[${i}].atom1.index`);
-                    var atom2 = Jmol.evaluate(jsmolApplet, `bond[${i}].atom2.index`);
-                    
-                    console.log(`Double bond found between atoms ${atom1} and ${atom2}`);
-                    
-                    // Calculate chirality for the atoms involved in the bond
-                    jmscript(`
-                        select atomIndex=${atom1};
-                        calculate chirality;
-                        select atomIndex=${atom2};
-                        calculate chirality;
-                    `);
-                }
-            }
-            */
         }
 
 
-
+*/
 
 
 
@@ -654,16 +538,16 @@ function LoadStructCallback(a,b,c,d,e,f,g,h) {
     //*var showstereo = 'select {*}; calculate chirality; select atomIndex=_atomPicked; taVar1 = {selected}.chirality; if (taVar1 == "") { taVar1 = "*" }; if ({selected}.element=="H") { taVar1=ghpc() }; if ({selected}.label == "R" || {selected}.label == "S" || {selected}.label == "*" || {selected}.label == "E" || {selected}.label == "Z" || {selected}.label == "Hs" || {selected}.label == "Hr") {select selected or connected(double, selected); label "*"; label off;} else { select selected or connected(double, selected); color label pink; set fontsize 10; background labels red; label @taVar1;}';
     
     
-    
-    calculateChiralityForAllAtoms();
-    
+    calculateChirality();
+    //calculateChiralityForAllAtoms();
+
     jmscript('set modelKitMode true;');
     
     //jmscript('set modelKitMode true;' + showstereo);
     //console.log(modelEdit);
     //console.log(spart1);
     
-    calculateEZChirality();
+    
     
     
     if (modelEdit) { return null; }
@@ -679,13 +563,15 @@ function StructureModifiedCallback(x, y, z) {
     //console.log('' + x, '' + y,'' + z);
     //if
     
+        calculateChirality();
+        //calculateChiralityForAllAtoms();
 
     
 
     if (y > 0) {
         console.log("y > 0");
-        //calculateChiralityForAllAtoms();
-        //calculateEZChirality();
+
+
     	stashUndo();
     	
     	jmscript('select *; wireframe 0.15; spacefill 23%; boundbox {*};centerat boundbox; color label pink;set fontsize 12; label ""; select formalCharge <> 0;label %C;unbind; unbind "DOUBLE"; javascript stashMol(), set modelKitMode true;');
