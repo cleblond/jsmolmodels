@@ -6,7 +6,7 @@
 <link rel="stylesheet" type="text/css" href="/tsugi/mod/openochem/js/kekule_libs/dist/themes/default/kekule.css" />
 
 <link rel="stylesheet" type="text/css" href="css/styles.css" />
-<script type="text/javascript" src="/jmol/jsmol/JSmol.min.js"></script>
+<script type="text/javascript" src="jmol-16.2.37/jsmol/JSmol.min.js"></script>
 <!-- <script type="text/javascript" src="/jmol/jsmol/JSmol.min.js"></script> -->
 
 <!-- <script type="text/javascript" src="/jmol-16.1.45/jsmol/JSmol.min.js"></script> -->
@@ -19,6 +19,9 @@
 
 
 <script type="text/javascript" src="/tsugi/mod/jsmolmodels/js/jsmol_editor.js"></script>
+
+
+
 <!--
 <script type="text/javascript" src="/tsugi/mod/jsmolmodels/js/bootbox.min.js"></script>
 -->
@@ -127,7 +130,62 @@
 
       </div><!-- button wrapper-->
       
-      <div id="jsmoldiv" style="display: inline-block; z-index: 400;"></div>
+      <div id="jsmoldiv" style="display: inline-block; z-index: 400;">
+      <script>
+        delete Jmol._tracker;
+
+        //Jmol._isAsync = false;
+
+                            // last update 2/18/2014 2:10:06 PM
+        var jmolApplet;
+        var jmolApplet0; // set up in HTML table, below
+
+        var EZcalced = false;
+
+        jmol_isReady = function(applet) {
+	        //document.title = (applet._id + " - Jmol " + Jmol.___JmolVersion)
+	        Jmol._getElement(applet, "appletdiv").style.border="1px solid gray";
+	        console.log("READDDY");
+        }		
+
+
+        console.log(showsearch);
+
+
+        var Info = {
+            width: 500,
+            height: 500,
+	        debug: false,
+	        zIndexBase: 1000,
+            deferApplet: false,
+            deferUncover: false,
+            //deferApplet: true,
+            color: "0xFFFFFF",
+            addSelectionOptions: true,
+            use: "HTML5",   // JAVA HTML5 WEBGL are all options
+            //j2sPath: "/jmol/jsmol/j2s", // this needs to point to where the j2s directory is.
+            j2sPath: "jmol-16.2.37/jsmol/j2s", // this needs to point to where the j2s directory is.
+            //jarPath: "/jmol/jsmol/java",// this needs to point to where the java directory is.
+            //jarFile: "JmolAppletSigned.jar",
+            //isSigned: true,
+            script: "set zoomlarge false; set antialiasDisplay; frank OFF;  set StructureModifiedCallback 'StructureModifiedCallback'; set PickCallback 'PickCallback'; set LoadStructCallback 'LoadStructCallback'; set elementkey On;//set modelKitMode true; //set showAtomTypes true",
+            
+            serverURL: "jmol-16.2.37/jsmol/php/jsmol.php",
+            //readyFunction: jmol_isReady,
+            disableJ2SLoadMonitor: true,
+            disableInitialConsole: true,
+            allowJavaScript: true,
+            addSelectionOptions: showsearch
+            //defaultModel: "$dopamine",
+            //console: "none", // default will be jmolApplet0_infodiv, but you can designate another div here or "none"
+        }
+
+        jmolApplet0 = Jmol.getApplet("jmolApplet0", Info);
+      
+      </script>
+      
+      
+      </div>
 
 
     </div>

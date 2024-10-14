@@ -29,6 +29,12 @@ if ($USER->instructor) {
                  if (isset($_POST['showstereo'])) {
                       $stereo = 1;
                  
+                 }
+                 
+                 $search = 0;
+                 if (isset($_POST['showsearch'])) {
+                      $search = 1;
+                 
                  } 
                  
                  
@@ -41,14 +47,15 @@ if ($USER->instructor) {
                  
                  //save the initial and answer   
                  $query = $PDOX->queryDie("INSERT INTO {$p}jsmolmodels
-                        (link_id, user_id, initial, showstereo)
-                        VALUES ( :LI, :UI, :IN, :SHO)
-                        ON DUPLICATE KEY UPDATE initial=:IN, showstereo=:SHO",
+                        (link_id, user_id, initial, showstereo, showsearch)
+                        VALUES ( :LI, :UI, :IN, :SHO, :SHS)
+                        ON DUPLICATE KEY UPDATE initial=:IN, showstereo=:SHO, showsearch=:SHS",
                         array(
                             ':LI' => $LINK->id,
                             ':UI' => $USER->id,
                             ':IN' => $initial,
-                            ':SHO' => $stereo 
+                            ':SHO' => $stereo,
+                            ':SHS' => $search
                             //':AN' => $_POST["answer"],
                             //':ST' => json_encode($settings)
                         )

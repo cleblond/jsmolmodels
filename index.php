@@ -24,6 +24,13 @@ if ($USER->instructor) {
             if ($row) {
 
                 $initial = $row['initial'];
+                
+                $stereo =  $row['showstereo'] ? "checked" : "";
+                $search =  $row['showsearch'] ? "checked" : "";
+                $sterval = $row['showstereo'];
+                $searval = $row['showsearch'];   
+            
+                
             
             } else {
 
@@ -32,25 +39,33 @@ if ($USER->instructor) {
             }
             
             $inst = '';
+            
+            
      
                        
 
 } else {
 
             
-            $row = $PDOX->rowDie("SELECT initial FROM {$p}jsmolmodels WHERE link_id = :LI",
+            $row = $PDOX->rowDie("SELECT initial, showstereo, showsearch FROM {$p}jsmolmodels WHERE link_id = :LI",
                 array(
                     ':LI' => $LINK->id
                 )
             );
 
             if ($row) {
-                    $initial = $row['initial'];
-                    
+                $initial = $row['initial'];
+                $stereo =  $row['showstereo'] ? "checked" : "";
+                $search =  $row['showsearch'] ? "checked" : "";
+                $sterval = $row['showstereo'];
+                $searval = $row['showsearch'];
+                var_dump($searval);
                     
                     //var_dump($answer);
             } else {
                     $initial = false;
+                    $sterval = 0;
+                    $searval = 0;
             }
             
             $inst = "style='display: none;'";
@@ -62,6 +77,18 @@ $OUTPUT->header();
 $OUTPUT->bodyStart();
 
 ?>
+
+<script>
+
+var initial = `<?=$initial?>`;
+var showstereo = <?=$sterval?>;
+var showsearch = <?=$searval?>;
+
+console.log(showsearch);
+
+</script>
+
+
 <div class="container">
 
 <?php  if ($USER->instructor) { ?>
@@ -87,8 +114,13 @@ $OUTPUT->bodyStart();
 
             
                         <form class="form-horizontal" id="setupform" action="index.php" method="post">   
-                            <input type="checkbox" id="showstereo" name="showstereo" value="showstereo">
-<label for="vehicle1">Show Stereochemistry</label><br>
+                            <input type="checkbox" id="showstereo" name="showstereo" value="showstereo" <?php echo $stereo;?>>
+<label >Show Stereochemistry</label><br>
+
+                            <input type="checkbox" id="showsearch" name="showsearch" value="showsearch" <?php echo $search?>>
+<label >Show Search Boxes</label><br>
+
+
                             <div class="form-group" >
                                  <label>Construct an initial molecule below, click "Set Initial", then click "Save".</small></label><br>
                                 <button class="btn btn-primary" id="initialbtn">Set Initial</button>
@@ -117,24 +149,19 @@ $OUTPUT->bodyStart();
   
   
  <textarea style="display:none" class="form-control" name="initial" id="initial"><?=$initial?></textarea>
-  
+
   
 <?php }
 
 //echo $initial;
 
-include("jsmol.php"); 
+include("jsmol.php");
 
 $OUTPUT->footer();
+
 ?>
 
-<script>
 
-var initial = `<?=$initial?>`;
-
-
-
-</script>
-
-
+<?php
+ 
 

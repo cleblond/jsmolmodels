@@ -1,9 +1,11 @@
+
+/*
 delete Jmol._tracker;
 
-Jmol._isAsync = false;
+//Jmol._isAsync = false;
 
                     // last update 2/18/2014 2:10:06 PM
-var jmolApplet = "jmolApplet0";
+var jmolApplet;
 var jmolApplet0; // set up in HTML table, below
 
 var EZcalced = false;
@@ -19,8 +21,8 @@ jmol_isReady = function(applet) {
 
 
 var Info = {
-	width: '100%',
-	height: '100%',
+            width: 500,
+            height: 500,
 	debug: false,
 	zIndexBase: 1000,
     deferApplet: false,
@@ -30,13 +32,13 @@ var Info = {
     addSelectionOptions: true,
     use: "HTML5",   // JAVA HTML5 WEBGL are all options
     //j2sPath: "/jmol/jsmol/j2s", // this needs to point to where the j2s directory is.
-    j2sPath: "/jmol/jsmol/j2s", // this needs to point to where the j2s directory is.
+    j2sPath: "jmol-16.2.37/jsmol/j2s", // this needs to point to where the j2s directory is.
     //jarPath: "/jmol/jsmol/java",// this needs to point to where the java directory is.
     //jarFile: "JmolAppletSigned.jar",
     //isSigned: true,
     script: "set zoomlarge false;set antialiasDisplay; frank OFF;  set StructureModifiedCallback 'StructureModifiedCallback'; set PickCallback 'PickCallback'; set LoadStructCallback 'LoadStructCallback'; set modelKitMode true; set showAtomTypes true",
     
-    serverURL: "/jmol/jsmol/php/jsmol.php",
+    serverURL: "jmol-16.2.37/jsmol/php/jsmol.php",
     //readyFunction: jmol_isReady,
     disableJ2SLoadMonitor: true,
     disableInitialConsole: true,
@@ -45,7 +47,8 @@ var Info = {
     //console: "none", // default will be jmolApplet0_infodiv, but you can designate another div here or "none"
 }
 
-
+jmolApplet0 = Jmol.getApplet("jmolApplet0", Info);
+*/
 var modelEdit = true;
 var lastPrompt=0;
 var undos = ["", "", "", "", "" ,"", "", "", "", ""];
@@ -480,8 +483,10 @@ function calculateChiralityForAllAtoms() {
 
 
 function calculateChirality() {
-
+    if (showstereo) {
       jmscript('select *;calculate chirality;set labelfor {*} \"%[chirality]\"; select *;font label 20;set labeloffset 10 10; background label yellow;color labels black;set labelfor {*} \"%[chirality]\";');
+    }
+
 }
 
 /*
@@ -691,7 +696,7 @@ $( document ).ready(function() {
 
 
 
-	$("#jsmoldiv").html(Jmol.getAppletHtml("jmolApplet0", Info))
+	//$("#jsmoldiv").html(Jmol.getAppletHtml("jmolApplet0", Info))
 
 
 
@@ -780,7 +785,8 @@ $( document ).ready(function() {
          //var initial = '"model example"'+$("#initial").val() +' end "model example"';
          
          //Jmol.script(jmolApplet0,'data '+initial+'; show data;' );
-         Jmol.script(jmolApplet0,'load '+$("#initial").val()+'; show data;' );
+         //Jmol.script(jmolApplet0,'load '+$("#initial").val()+'; show data;' );
+         
 
     });
     
@@ -791,6 +797,7 @@ $( document ).ready(function() {
          //console.log(initial);
          
          //Jmol.script(jmolApplet0,'data '+initial+'; show data;' );
+         //console.log(initial);
          Jmol.script(jmolApplet0,'load '+initial+'; show data;' );
     
     
