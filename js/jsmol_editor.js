@@ -101,7 +101,7 @@ var Info = {
 
 jmolApplet0 = Jmol.getApplet("jmolApplet0", Info);
 
-
+Jmol.script(jmolApplet0, 'load ' + initial + ';');
 
 var modelEdit = true;
 var lastPrompt=0;
@@ -149,7 +149,7 @@ function hasCharge() {
 
 
 function resetJsmol(){
-
+        console.log("reset jsmol");
 
         Jmol.script(jmolApplet0,'set modelKitMode true; zap;' );
 
@@ -853,7 +853,13 @@ $( document ).ready(function() {
          
          //Jmol.script(jmolApplet0,'data '+initial+'; show data;' );
          //console.log(initial);
-         Jmol.script(jmolApplet0,'load '+initial+'; show data;' );
+         
+         
+         //Jmol.script(jmolApplet0,'load '+initial+'; show data;' );
+         
+         //setTimeout(function() {
+            
+        //}, 200); 
     
     
 
