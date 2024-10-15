@@ -35,6 +35,10 @@ if ($USER->instructor) {
             } else {
 
                 $initial = '';
+                $stereo =  "checked";
+                $search =  "checked";
+                $sterval = 0;
+                $searval = 0;   
             
             }
             

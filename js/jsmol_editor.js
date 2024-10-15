@@ -101,7 +101,7 @@ var Info = {
 
 jmolApplet0 = Jmol.getApplet("jmolApplet0", Info);
 
-Jmol.script(jmolApplet0, 'load ' + initial + ';');
+
 
 var modelEdit = true;
 var lastPrompt=0;
@@ -846,6 +846,31 @@ $( document ).ready(function() {
     });
     
     
+    	setTimeout(function() {
+
+
+	    if (!initial) {
+		console.log("iniital not set");
+		Jmol.script(jmolApplet0,'set modelKitMode true; zap;' );
+	    	resetJsmol();
+	    }
+
+
+
+
+	}, 200);
+	
+	
+	if (initial) {
+	    
+	    Jmol.script(jmolApplet0, 'load ' + initial + ';');
+	    
+	}
+    
+    
+    
+    
+
     
          //var initial = '"model example"'+$("#initial").val() +' end "model example"';
          

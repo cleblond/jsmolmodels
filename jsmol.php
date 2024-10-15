@@ -131,10 +131,7 @@
       </div><!-- button wrapper-->
       
       <div id="jsmoldiv" style="display: inline-block; z-index: 400;">
-      <script>
 
-      
-      </script>
       <script type="text/javascript" src="/tsugi/mod/jsmolmodels/js/jsmol_editor.js"></script>
       
       
