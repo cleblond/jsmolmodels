@@ -293,9 +293,12 @@ function moveMol(num) {
 		jmscript('set picking off; set picking ON; set picking DRAGATOM; bind "double" "javascript moveMol(1)";');
 	}
 	if (num == 4) {
-		var ecStr = "Click a bond to select bond. Click-Drag in a vertical |direction on the left or right of the screen to rotate. |";
+		var ecStr = "Click a bond to select it. After selection, Click-Drag on circled atoms to rotate its branch.";
 		echo(ecStr);
-		var scpt = 'set Picking OFF;set Picking ON;set Picking ROTATEBOND;unbind "LEFT-DRAG";bind "LEFT-DRAG" "_rotateBranch";hover off;unbind "WHEEL";bind "WHEEL" "select *;color cpk"';
+		console.log()
+		//var scpt = 'set modelKitMode false; set Picking OFF;set Picking ON; set Picking ROTATEBOND; unbind "LEFT-DRAG";bind "LEFT-DRAG" "_rotateBranch"; hover off;unbind "WHEEL"; bind "WHEEL" "select *;color cpk"';
+		//var scpt = 'set modelKitMode false;';
+		var scpt = 'set modelKitMode false; hover ON;set Picking ROTATEBOND;';
 		jmscript(scpt);
 	}
 }
